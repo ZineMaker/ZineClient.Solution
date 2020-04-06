@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "@Model.Name";
+}
+
+@model ZineClient.Models.Organization
+
+
+<h2>Organization Details: @Html.DisplayNameFor(model => model.Name)</h2>
+
+@if (@Model.ApplicationUsers.Count == 0)
+{
+  <p>This organization doesn't have users yet</p>
+}
+else
+{
+  <p></p>
+  foreach(var join in Model.ApplicationUsers)
+  {
+    <li>@join.ApplicationUser.FirstName @join.ApplicationUser.LastName</li>
+  }
+}
+
+
+@if (@Model.Zines.Count == 0)
+{
+  <p>This organization doesn't have zines yet</p>
+}
+else
+{
+  <p></p>
+  foreach(Zine zine in Model.Zines)
+  {
+    <li>@zine.Name (@zine.IssueNumber)  
+      @if (Model.Owner == User.Identity)
+      {
+        <a asp-controller="Zines" asp-action="CheckDelete" asp-route-id="@zine.ZineId">Delete zine?</a>
+      }
+    </li>
+  }
+}
+
+@if (Model.Owner == User.Identity)
+{
+<div class="footer">
+  <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
+  <a class="btn btn-light" asp-action="CheckDelete" asp-route-id="@Model.OrganizationId">Delete organization</a>
+  <a class="btn btn-light" asp-controller="Zines" asp-action="Create">Add zine</a>
+</div>
+}
+
+

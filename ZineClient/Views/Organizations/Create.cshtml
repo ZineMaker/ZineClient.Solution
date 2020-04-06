@@ -5,8 +5,6 @@
 <div class="registration-form">
   <form asp-controller="Organizations" asp-action="Create" method="post">
 
-    <input type="hidden" asp-for="Owner" value="@User">
-
     <div class="form-group">
       <label for="Name">Name</label>
       <input class="form-control" asp-for="Name">
@@ -14,7 +12,7 @@
 
     <div class="form-group">
       <label for="Description">Description</label>
-      <input class="form-control" asp-for="Description">
+      <textarea rows="8" class="form-control" asp-for="Description"></textarea>
     </div>
 
     <input class="btn btn-light" type="submit" value="Create">

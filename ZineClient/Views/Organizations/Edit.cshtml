@@ -3,7 +3,9 @@
 <h1>Edit Organization</h1>
 
 <div class="registration-form">
-  <form asp-controller="Organizations" asp-action="Create" method="post">
+  <form asp-controller="Organizations" asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="Owner" value="@User">
 
     <div class="form-group">
       <label for="Name">Name</label>
