@@ -4,6 +4,7 @@ using ZineClient.Models;
 using System.Threading.Tasks;
 using ZineClient.ViewModels;
 using System;
+using System.Linq;
 
 namespace ZineClient.Controllers
 {
@@ -23,7 +24,7 @@ namespace ZineClient.Controllers
 
     public ActionResult Index()
     {
-
+      
       return View();
     }
 
