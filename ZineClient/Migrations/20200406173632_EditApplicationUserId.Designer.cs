@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZineClient.Models;
 
 namespace ZineClient.Migrations
 {
     [DbContext(typeof(ZineClientContext))]
-    partial class ZineClientContextModelSnapshot : ModelSnapshot
+    [Migration("20200406173632_EditApplicationUserId")]
+    partial class EditApplicationUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,13 +185,15 @@ namespace ZineClient.Migrations
                     b.Property<int>("ApplicationUserOrganizationId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
 
                     b.Property<int>("OrganizationId");
 
                     b.HasKey("ApplicationUserOrganizationId");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserId1");
 
                     b.HasIndex("OrganizationId");
 
@@ -351,7 +355,7 @@ namespace ZineClient.Migrations
                 {
                     b.HasOne("ZineClient.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Organizations")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId1");
 
                     b.HasOne("ZineClient.Models.Organization", "Organization")
                         .WithMany("ApplicationUsers")

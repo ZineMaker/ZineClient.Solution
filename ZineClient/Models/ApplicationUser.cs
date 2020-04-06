@@ -5,7 +5,7 @@ namespace ZineClient.Models
 {
   public class ApplicationUser : IdentityUser
   {
-    public int ApplicationUserId { get; set; }
+    // public int ApplicationUserId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public virtual ICollection<ApplicationUserOrganization> Organizations { get; set; }

@@ -6,7 +6,7 @@ namespace ZineClient.Models
   public class Post
   {
     public int PostId { get; set; }
-    public int ApplicationUserId { get; set; }
+    // public int ApplicationUserId { get; set; }
     public virtual ApplicationUser ApplicationUser { get; set; }
     public string Title { get; set; }
     public string Source { get; set; } // if content needs to be cited/link to outside site
