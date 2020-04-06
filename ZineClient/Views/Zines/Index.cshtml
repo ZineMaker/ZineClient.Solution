@@ -1,0 +1,12 @@
+@model List<ZineClient.Models.Zine>;
+
+<h1>Zines</h1>
+
+<ul>
+  @foreach(Zine zine in Model)
+  {
+      <li>@Html.ActionLink($"{zine.Title}", "Details", new { id = zine.ZineId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new zine", "Create")</p>

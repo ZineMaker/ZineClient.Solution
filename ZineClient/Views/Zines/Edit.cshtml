@@ -1,0 +1,22 @@
+@model ZineClient.Models.Zine
+
+<h1>Edit Zine</h1>
+
+<div class="registration-form">
+  <form asp-controller="Zines" asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="Owner" value="@User">
+
+    <div class="form-group">
+      <label for="Name">Title</label>
+      <input class="form-control" asp-for="Name">
+    </div>
+
+    <div class="form-group">
+      <label for="Description">Description</label>
+      <input class="form-control" asp-for="Description">
+    </div>
+
+    <input class="btn btn-light" type="submit" value="Edit">
+  </form>
+</div>
