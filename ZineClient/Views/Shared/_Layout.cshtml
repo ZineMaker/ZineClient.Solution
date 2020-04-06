@@ -37,8 +37,24 @@
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
+                            @* <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">My Account</a>
+                            </li> *@
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @User.Identity.Name
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Account" asp-action="Index">My account</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">My posts</a>
+                                    <a class="dropdown-item" href="#">My zines</a>
+                                    <a class="dropdown-item" href="#">My organizations</a>
+                                    <div class="dropdown-divider"></div>
+                                    <form method="post">
+                                    <input type="submit" class="dropdown-item btn btn-light mb-2" asp-controller="Account" asp-action="LogOff" value="Sign out"/>
+                                    </form>
+                                </div>
                             </li>
                         }
                         else
