@@ -4,10 +4,11 @@
 {
   <h1>My Account</h1>
   <p>Logged in as @User.Identity.Name</p>
-  @* <form method="post">
-    <a class="btn btn-light" asp-action="Logoff">Log out</a>
+  <form asp-controller="Account" asp-action="Logoff" method="post">
+  
+    <input class="btn btn-light" type="submit" value="Sign out">
   </form>
-   *@
+  
 }
 else
 {
