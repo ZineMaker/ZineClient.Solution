@@ -24,7 +24,13 @@ namespace ZineClient.Controllers
 
     public ActionResult Index()
     {
-      
+
+      return View();
+    }
+
+    public ActionResult OrganizationsIndex()
+    {
+      //List<Organization> model = _db.Organizations.Where(o => o.Owner.Id == User.Id)ToList();
       return View();
     }
 

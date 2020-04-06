@@ -72,6 +72,7 @@ namespace ZineClient.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     public ActionResult CheckDelete(int id)
     {
       var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);

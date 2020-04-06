@@ -1,3 +1,6 @@
+@using System
+@using Microsoft.AspNetCore.Identity
+
 @{
     ViewData["Title"] = "@Model.Name";
 }
@@ -5,7 +8,7 @@
 @model ZineClient.Models.Organization
 
 
-<h2>Organization Details: @Html.DisplayNameFor(model => model.Name)</h2>
+<h2>Organization Details: @Html.DisplayFor(model => model.Name)</h2>
 
 @if (@Model.ApplicationUsers.Count == 0)
 {
@@ -31,21 +34,23 @@ else
   foreach(Zine zine in Model.Zines)
   {
     <li>@zine.Name (@zine.IssueNumber)  
-      @if (Model.Owner == User.Identity)
-      {
+      @* @if (Model.Owner == User.Identity)
+      { *@
         <a asp-controller="Zines" asp-action="CheckDelete" asp-route-id="@zine.ZineId">Delete zine?</a>
-      }
+      @* } *@
     </li>
   }
 }
 
-@if (Model.Owner == User.Identity)
-{
-<div class="footer">
+
+
+@* @if (User.Identity.Id == Organization.Owner.ApplicationUserId)
+{ *@
+<div class="btn-menu">
   <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
   <a class="btn btn-light" asp-action="CheckDelete" asp-route-id="@Model.OrganizationId">Delete organization</a>
-  <a class="btn btn-light" asp-controller="Zines" asp-action="Create">Add zine</a>
+  <a class="btn btn-light" asp-controller="Zines" asp-action="Create" asp-route-id="@Model.OrganizationId">Add zine</a>
 </div>
-}
+@* } *@
 
 

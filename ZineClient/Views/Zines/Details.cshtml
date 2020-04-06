@@ -4,6 +4,7 @@
 
 @model ZineClient.Models.Zine
 
+<p>This zine was created by @Model.Organization.Name</p>
 
 @if (@Model.Posts.Count == 0)
 {
@@ -12,24 +13,24 @@
 else
 {
   <p></p>
-  foreach(Post post in Model.Posts)
+  foreach(var join in Model.Posts)
   {
-    <li>@post.Title (@zine.IssueNumber)  
-      @if (Model.Owner == User.Identity)
-      {
-        <a asp-controller="Posts" asp-action="CheckDelete" asp-route-id="@post.PostId">Delete post?</a>
-      }
+    <li>@join.Post.Title 
+      @* @if (Model.Organization.Owner == User.Identity)
+      { *@
+        <a asp-controller="Posts" asp-action="CheckDelete" asp-route-id="@join.Post.PostId">Delete post?</a>
+      @* } *@
     </li>
   }
 }
 
-@if (Model.Owner == User.Identity)
-{
+@* @if (Model.Organization.Owner == User.Identity)
+{ *@
 <div class="footer">
   <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.ZineId">Edit zine</a>
   <a class="btn btn-light" asp-action="CheckDelete" asp-route-id="@Model.ZineId">Delete zine</a>
   <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
 </div>
-}
+@* } *@
 
 
