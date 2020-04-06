@@ -2,38 +2,22 @@
     ViewData["Title"] = "@Model.Name";
 }
 
-@model ZineClient.Models.Organization
+@model ZineClient.Models.Zine
 
 
-<h2>Organization Details: @Html.DisplayNameFor(model => model.Name)</h2>
-
-@if (@Model.ApplicationUsers.Count == 0)
+@if (@Model.Posts.Count == 0)
 {
-  <p>This organization doesn't have users yet</p>
+  <p>This zine doesn't have posts yet</p>
 }
 else
 {
   <p></p>
-  foreach(var join in Model.ApplicationUsers)
+  foreach(Post post in Model.Posts)
   {
-    <li>@join.ApplicationUser.FirstName @join.ApplicationUser.LastName</li>
-  }
-}
-
-
-@if (@Model.Zines.Count == 0)
-{
-  <p>This organization doesn't have zines yet</p>
-}
-else
-{
-  <p></p>
-  foreach(Zine zine in Model.Zines)
-  {
-    <li>@zine.Name (@zine.IssueNumber)  
+    <li>@post.Title (@zine.IssueNumber)  
       @if (Model.Owner == User.Identity)
       {
-        <a asp-controller="Zines" asp-action="CheckDelete" asp-route-id="@zine.ZineId">Delete zine?</a>
+        <a asp-controller="Posts" asp-action="CheckDelete" asp-route-id="@post.PostId">Delete post?</a>
       }
     </li>
   }
@@ -42,9 +26,9 @@ else
 @if (Model.Owner == User.Identity)
 {
 <div class="footer">
-  <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
-  <a class="btn btn-light" asp-action="CheckDelete" asp-route-id="@Model.OrganizationId">Delete organization</a>
-  <a class="btn btn-light" asp-controller="Zines" asp-action="Create">Add zine</a>
+  <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.ZineId">Edit zine</a>
+  <a class="btn btn-light" asp-action="CheckDelete" asp-route-id="@Model.ZineId">Delete zine</a>
+  <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
 </div>
 }
 
