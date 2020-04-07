@@ -5,7 +5,7 @@ namespace ZineClient.Models
     public int PostZineId { get; set; }
     public int PostId { get; set; }
     public int ZineId { get; set; }
-    public Post Post { get; set; }
-    public Zine Zine { get; set; }
+    public virtual Post Post { get; set; }
+    public virtual Zine Zine { get; set; }
   }
 }

@@ -5,6 +5,6 @@
 <ul>
   @foreach(Zine zine in Model)
   {
-      <li>@Html.ActionLink($"{zine.Name}", "Details", new { id = zine.ZineId })</li>
+    <h4>@Html.ActionLink($"{zine.Name}", "Details", new { id = zine.ZineId })</h4>
   }
 </ul>

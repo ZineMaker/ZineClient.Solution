@@ -33,19 +33,26 @@ namespace ZineClient.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
 
-      ViewBag.MyOrganizations = _db.ApplicationUserOrganization.Where(join => join.ApplicationUser == currentUser).ToList();
+      // ViewBag.MyOrganizations = _db.ApplicationUserOrganization.Where(join => join.ApplicationUser == currentUser).ToList();
 
       return View(currentUser);
     }
 
-    public ActionResult Posts()
+    public async Task<ActionResult> Posts()
     {
-      return View();
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      return View(currentUser);
     }
 
-    public ActionResult Zines()
+    public async Task<ActionResult> Zines()
     {
-      return View();
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+
+      ViewBag.MyOrganizations = _db.ApplicationUserOrganization.Where(join => join.ApplicationUser == currentUser).ToList();
+
+      return View(currentUser);
     }
 
     public IActionResult Register()

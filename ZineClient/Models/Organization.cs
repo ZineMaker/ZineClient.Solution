@@ -7,7 +7,7 @@ namespace ZineClient.Models
     public int OrganizationId { get; set; }
     public string Name { get; set; }
     // public int ApplicationUserId {get;set;}
-    public ApplicationUser Owner { get; set; }
+    public virtual ApplicationUser Owner { get; set; }
 
     public string Description { get; set; }
     public virtual ICollection<ApplicationUserOrganization> ApplicationUsers { get; set; }

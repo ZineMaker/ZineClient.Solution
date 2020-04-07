@@ -76,7 +76,7 @@ namespace ZineClient.Controllers
     {
       _db.Entry(zine).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Details", "Organizations", new { id = zine.OrganizationId });
+      return RedirectToAction("Details", "Zines", new { id = zine.ZineId });
     }
     public ActionResult Delete(int id)
     {

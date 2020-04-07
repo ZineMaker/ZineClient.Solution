@@ -1,0 +1,18 @@
+@model ZineClient.Models.ApplicationUser
+
+<h1>My posts</h1>
+
+@if (Model.Posts.Count == 0)
+{
+  <p>You have not created any posts yet.</p>
+}
+else
+{
+  <ul>
+    @foreach (var post in Model.Posts)
+    {
+      <p>test</p>
+      <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.PostId">@post.Title</a>
+    }
+  </ul>
+}

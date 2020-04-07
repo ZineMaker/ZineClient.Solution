@@ -1,28 +1,18 @@
-@using Microsoft.AspNetCore.Identity
-
-@* @model List<ZineClient.Models.Organization>; *@
-  @model ZineClient.Models.ApplicationUser
+@model ZineClient.Models.ApplicationUser
 
 <h1>My organizations</h1>
 
-@if (ViewBag.MyOrganizations.Count == 0)
+@if (Model.Organizations.Count == 0)
 {
   <p>You have not joined any organizations yet.</p>
 }
 else
 {
   <ul>
-    @* @foreach(var join in ViewBag.MyOrganizations)
-    {
-      <p>Item #test</p>
-      <li><a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</a></li>
-    } *@
     @foreach (var join in Model.Organizations)
     {
       <p>test</p>
-      <a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization</a>
+      <a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</a>
     }
   </ul>
 }
-
-<p>@Html.ActionLink("Add new organization", "Create")</p>

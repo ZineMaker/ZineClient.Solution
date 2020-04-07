@@ -1,0 +1,18 @@
+@model ZineClient.Models.ApplicationUser
+
+<h1>My zines</h1>
+
+@if (Model.Organizations.Count == 0)
+{
+  <p>Join or create an organization to contribute to zines.</p>
+}
+else
+{
+  @* <ul>
+    @foreach (var join in ViewBag.MyOrganizations)
+    {
+      <p>test</p>
+      <a asp-controller="Zines" asp-action="Details" asp-route-id="@zine.ZineId">@zine.Name</a>
+    }
+  </ul> *@
+}
