@@ -66,8 +66,8 @@ namespace ZineClient.Controllers
     public ActionResult Edit(int id)
     {
       var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
-      var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == thisZine.OrganizationId);
-      ViewBag.Organization = thisOrganization;
+      // var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == thisZine.OrganizationId);
+      // ViewBag.Organization = thisOrganization;
       return View(thisZine);
     }
 
@@ -76,7 +76,7 @@ namespace ZineClient.Controllers
     {
       _db.Entry(zine).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Organizations", new { id = zine.OrganizationId });
     }
     public ActionResult Delete(int id)
     {
@@ -91,7 +91,7 @@ namespace ZineClient.Controllers
       var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
       _db.Zines.Remove(thisZine);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Organizations", new { id = thisZine.OrganizationId });
     }
   }
 }

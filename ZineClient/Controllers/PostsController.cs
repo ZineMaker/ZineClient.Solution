@@ -64,20 +64,20 @@ namespace ZineClient.Controllers
       return View(thisPost);
     }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);
+    public ActionResult Edit(int id)
+    {
+      var thisPost = _db.Posts.FirstOrDefault(posts => posts.PostId == id);
 
-    //   return View(thisOrganization);
-    // }
+      return View(thisPost);
+    }
 
-    // [HttpPost]
-    // public ActionResult Edit(Organization organization)
-    // {
-    //   _db.Entry(organization).State = EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Edit(Post post)
+    {
+      _db.Entry(post).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index", "Account");
+    }
     // public ActionResult CheckDelete(int id)
     // {
     //   var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);
