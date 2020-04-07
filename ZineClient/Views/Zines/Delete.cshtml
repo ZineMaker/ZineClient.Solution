@@ -7,7 +7,7 @@
 
 <div class="registration-form">
   <form asp-controller="Zines" asp-action="Delete" method="post">
-    <input type="hidden" value="@Model.ZineId" asp-for="ZineId">
+    @* <input type="hidden" value="@Model.ZineId" asp-for="ZineId"> *@
     <input class="btn btn-light" type="submit" value="Delete">
   </form>
 </div>
