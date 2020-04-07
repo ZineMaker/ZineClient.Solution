@@ -1,10 +1,31 @@
+@{
+    ViewData["Title"] = "Zines";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Explore Zines</h1>
+    <p>View zines from everyone</p>
+</div>
+
 @model List<ZineClient.Models.Zine>;
 
-<h1>Zines</h1>
-
-<ul>
+@* <ul>
   @foreach(Zine zine in Model)
   {
-    <h4>@Html.ActionLink($"{zine.Name}", "Details", new { id = zine.ZineId })</h4>
+    <h4></h4>
   }
-</ul>
+</ul> *@
+
+<div class="zine-grid-display">
+    @foreach (Zine zine in Model)
+    {
+        <div class="zine-thumbnail">
+            <img class="zine-cover" src="@zine.MainImageUrl">
+            <div class="overlay">
+                <div class="zine-details-link">
+                    @Html.ActionLink($"{zine.Name}", "Details", new { id = zine.ZineId })
+                </div>
+            </div>            
+        </div>
+    }
+</div>

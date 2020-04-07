@@ -7,6 +7,16 @@
     <p>Connect with creative communities</p>
 </div>
 
-<div class="row top-zines">
-
+<div class="zine-grid-display">
+    @foreach (Zine zine in ViewBag.TopFour)
+    {
+        <div class="zine-thumbnail">
+            <img class="zine-cover" src="@zine.MainImageUrl">
+            <div class="overlay">
+                <div class="zine-details-link">
+                    @Html.ActionLink($"{zine.Name}", "Details", new { id = zine.ZineId })
+                </div>
+            </div>            
+        </div>
+    }
 </div>

@@ -8,22 +8,29 @@ using ZineClient.Models;
 
 namespace ZineClient.Controllers
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
+  {
+    private readonly ZineClientContext _db;
+
+    public HomeController(ZineClientContext db)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+      _db = db;
     }
+    public IActionResult Index()
+    {
+      ViewBag.TopFour = _db.Zines.OrderBy(z => z.PublicationDate).Take(4).ToList();
+      return View();
+    }
+
+    public IActionResult Privacy()
+    {
+      return View();
+    }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+      return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+  }
 }

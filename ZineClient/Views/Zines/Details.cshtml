@@ -4,13 +4,13 @@
 
 @model ZineClient.Models.Zine
 
-<p>This zine was created by @ViewBag.Name</p>
+<div class=jumbotron>
+  <h2>@Html.DisplayFor(model => model.Name) (@Html.DisplayFor(model => model.IssueNumber))</h2>
+  <p>Created by @ViewBag.Name</p>
+  <p>@Html.DisplayFor(model => model.Description)</p>
+  <p>@Html.DisplayFor(model => model.PublicationDate)</p>
+</div>
 
-<h2>Zine Details: @Html.DisplayFor(model => model.Name)</h2>
-..
-<p>Description: @Html.DisplayFor(model => model.Description)</p>
-<p>Publication Date: @Html.DisplayFor(model => model.PublicationDate)</p>
-<p>Issue Number: @Html.DisplayFor(model => model.IssueNumber)</p>
 
 @if (@Model.Posts.Count == 0)
 {
@@ -20,22 +20,27 @@ else
 {
   <p></p>
   foreach(var join in Model.Posts)
-  {
-    <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
-      @* @if (Model.Organization.Owner == User.Identity)
-      { *@
-        <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
-      @* } *@
+  { 
+    <div class="post">
+          <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
+      <p>@join.Post.Published</p>
+      <p>@join.Post.Body</p>
+      <img src="@join.Post.Source" class="img-fluid img-thumbnail">
+        @if (User.Identity.IsAuthenticated)
+        {
+          <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
+        }
+    </div>
   }
 }
 
-@* @if (Model.Organization.Owner == User.Identity)
-{ *@
+@if (User.Identity.IsAuthenticated)
+{
 <div class="btn-menu">
   <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.ZineId">Edit zine</a>
   <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.ZineId">Delete zine</a>
   <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
 </div>
-@* } *@
+}
 
 
