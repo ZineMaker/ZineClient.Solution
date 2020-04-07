@@ -1,0 +1,32 @@
+@model ZineClient.Models.Post
+<h1>Edit Post</h1>
+
+
+<div class="registration-form">
+  <form asp-controller="Posts" asp-action="Edit" method="post">
+
+    <input type="hidden" value="@Model.PostId"  asp-for="PostId" >
+
+    <div class="form-group">
+      <label for="Title">Title</label>
+      <input class="form-control" asp-for="Title">
+    </div>
+
+    <div class="form-group">
+      <label for="Source">Source</label>
+      <input class="form-control" asp-for="Source">
+    </div>
+
+    <div class="form-group">
+      <label for="Body">Body</label>
+      <textarea rows="8" class="form-control" asp-for="Body"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="Published">Published</label>
+      <input type="date" class="form-control" asp-for="Published">
+    </div>    
+
+    <input class="btn btn-light" type="submit" value="Edit">
+  </form>
+</div>

@@ -7,7 +7,7 @@
 <p>This zine was created by @ViewBag.Name</p>
 
 <h2>Zine Details: @Html.DisplayFor(model => model.Name)</h2>
-
+..
 <p>Description: @Html.DisplayFor(model => model.Description)</p>
 <p>Publication Date: @Html.DisplayFor(model => model.PublicationDate)</p>
 <p>Issue Number: @Html.DisplayFor(model => model.IssueNumber)</p>
@@ -21,12 +21,11 @@ else
   <p></p>
   foreach(var join in Model.Posts)
   {
-    <li>@join.Post.Title 
+    <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
       @* @if (Model.Organization.Owner == User.Identity)
       { *@
-        <a asp-controller="Posts" asp-action="CheckDelete" asp-route-id="@join.Post.PostId">Delete post?</a>
+        <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
       @* } *@
-    </li>
   }
 }
 

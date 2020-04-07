@@ -7,7 +7,7 @@
 
 @model ZineClient.Models.Organization
 
-
+.
 <h2>Organization Details: @Html.DisplayFor(model => model.Name)</h2>
 
 <p>Description: @Html.DisplayFor(model => model.Description)</p>
@@ -38,7 +38,7 @@ else
     <h4><a asp-controller="Zines" asp-action="Details" asp-route-id="@zine.ZineId">@zine.Name</a></h4>
       @* @if (Model.Owner == User.Identity)
       { *@
-        <p><a asp-controller="Zines" asp-action="CheckDelete" asp-route-id="@zine.ZineId">Delete zine?</a></p>
+        <p><a asp-controller="Zines" asp-action="Delete" asp-route-id="@zine.ZineId">Delete zine?</a></p>
       @* } *@
   }
 }
@@ -49,7 +49,7 @@ else
 { *@
 <div class="btn-menu">
   <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
-  <a class="btn btn-light" asp-action="CheckDelete" asp-route-id="@Model.OrganizationId">Delete organization</a>
+  <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.OrganizationId">Delete organization</a>
   <a class="btn btn-light" asp-controller="Zines" asp-action="Create" asp-route-id="@Model.OrganizationId">Add zine</a>
 </div>
 @* } *@
