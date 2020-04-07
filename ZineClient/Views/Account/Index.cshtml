@@ -4,6 +4,23 @@
 {
   <h1>My Account</h1>
   <p>Logged in as @User.Identity.Name</p>
+
+  @if (@Model.Posts.Count == 0)
+  {
+    <p>You don't have posts yet</p>
+  }
+  else
+  {
+    <p></p>
+    foreach(var join in Model.Posts)
+    {
+      <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
+        @* @if (Model.Organization.Owner == User.Identity)
+        { *@
+          <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
+        @* } *@
+    }
+  }
   
   <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">Create an organization</a>
   <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>

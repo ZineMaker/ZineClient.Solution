@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using ZineClient.ViewModels;
 using System;
 using System.Linq;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace ZineClient.Controllers
 {
@@ -27,10 +29,23 @@ namespace ZineClient.Controllers
 
       return View();
     }
-
-    public ActionResult OrganizationsIndex()
+    public async Task<ActionResult> Organizations()
     {
-      //List<Organization> model = _db.Organizations.Where(o => o.Owner.Id == User.Id)ToList();
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+
+      List<Organization> model = _db.Organizations.Where(o => o.Owner.Id == currentUser.Id).ToList();
+
+      return View();
+    }
+
+    public ActionResult Posts()
+    {
+      return View();
+    }
+
+    public ActionResult Zines()
+    {
       return View();
     }
 

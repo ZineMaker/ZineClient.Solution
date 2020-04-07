@@ -1,0 +1,20 @@
+@model List<ZineClient.Models.Organization>;
+
+<h1>My organizations</h1>
+
+if (Model.Count == 0)
+{
+  <p>You have not joined any organizations yet.</p>
+}
+else
+{...............................................................................................................................................................
+  <ul>
+    @foreach(var organization in Model)
+    {
+        <li><a asp-controller="Organizations" asp-action="Details" >@organization.Name</a>
+          @Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add new organization", "Create")</p>
