@@ -11,6 +11,8 @@ namespace ZineClient.Models
     public string Title { get; set; }
     public string Source { get; set; } // if content needs to be cited/link to outside site
     public string Body { get; set; }  // public byte[] Body {get;set;}
+    public string MainImageUrl { get; set; }
+    public byte[] MainImageFile { get; set; }
 
     // public string Slug { get; set; }
     public DateTime Published { get; set; }

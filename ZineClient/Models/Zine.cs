@@ -7,9 +7,10 @@ namespace ZineClient.Models
   {
     public int ZineId { get; set; }
     public int OrganizationId { get; set; }
-
     public string Name { get; set; }
     public string Description { set; get; }
+    public string MainImageUrl { get; set; }
+    public byte[] MainImageFile { get; set; }
     public DateTime PublicationDate { get; set; }
     public int IssueNumber { get; set; }
     public virtual Organization Organization { get; set; }
