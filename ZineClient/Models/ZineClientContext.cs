@@ -10,7 +10,7 @@ namespace ZineClient.Models
     public virtual DbSet<Post> Posts { get; set; }
     public virtual DbSet<Tag> Tags { get; set; }
 
-    public DbSet<ApplicationUserOrganization> ApplicationsUserOrganization { get; set; }
+    public DbSet<ApplicationUserOrganization> ApplicationUserOrganization { get; set; }
     public DbSet<PostTag> PostTag { get; set; }
     public DbSet<PostZine> PostZine { get; set; }
 

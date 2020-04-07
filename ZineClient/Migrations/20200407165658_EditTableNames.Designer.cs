@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZineClient.Models;
 
 namespace ZineClient.Migrations
 {
     [DbContext(typeof(ZineClientContext))]
-    partial class ZineClientContextModelSnapshot : ModelSnapshot
+    [Migration("20200407165658_EditTableNames")]
+    partial class EditTableNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
