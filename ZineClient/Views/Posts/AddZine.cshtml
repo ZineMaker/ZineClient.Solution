@@ -1,0 +1,22 @@
+@model ZineClient.Models.Post
+
+<h2> Add post @Html.DisplayFor(model => model.Title) to one more zine</h2>
+@* @using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PostId)
+
+    @Html.Label("Select zine")
+    @Html.DropDownList("ZineId")
+
+    <input type="submit" value="Save" />
+} *@
+
+<div class="registration-form">
+  <form asp-controller="Posts" asp-action="AddZine" method="post">
+
+    <input type="hidden" value="@Model.PostId"  asp-for="PostId">
+    @Html.Label("Select zine")
+    @Html.DropDownList("ZineId")
+
+  <input class="btn btn-light" type="submit" value="AddZine">
+</form>

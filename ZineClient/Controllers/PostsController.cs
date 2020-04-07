@@ -100,5 +100,50 @@ namespace ZineClient.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddZine(int id)
+    {
+      var thisPost = _db.Posts.FirstOrDefault(posts => posts.PostId == id);
+      List<Zine> selectedZines = _db.Zines.OrderBy(x => x.Name).ToList(); // Alphabetize ALL zines
+      var postZines = _db.PostZine.Where(x => x.PostId == id).ToList(); // list of PostZines that match this post
+
+      foreach (PostZine join in postZines)
+      {
+        Zine thisZine = _db.Zines.Find(join.ZineId);
+        selectedZines.Remove(thisZine);
+      }
+
+      ViewBag.ZineId = new SelectList(selectedZines, "ZineId", "Name");
+
+      // ViewBag.ZineId = new SelectList(_db.Zines, "ZineId", "Name");
+      return View(thisPost);
+    }
+
+    [HttpPost]
+    public ActionResult AddZine(Post post, int ZineId)
+    {
+      if (ZineId != 0)
+      {
+        _db.PostZine.Add(new PostZine() { ZineId = ZineId, PostId = post.PostId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", "Posts", new { id = post.PostId });
+    }
+
+    [HttpPost]
+    public ActionResult DeleteZine(int joinId)
+    {
+      var joinEntry = _db.PostZine.FirstOrDefault(entry => entry.PostZineId == joinId);
+
+      //var thisPost = _db.Posts.FirstOrDefault(x => x.PostId == joinEntry.PostId);
+
+      int thisPostId = joinEntry.PostId;
+
+      _db.PostZine.Remove(joinEntry);
+      _db.SaveChanges();
+
+      return RedirectToAction("Details", "Posts", new { id = thisPostId });
+      // return RedirectToAction("Index");
+    }
   }
 }

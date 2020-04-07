@@ -4,13 +4,45 @@
 
 @model ZineClient.Models.Post
 
-<p>This post was created by @ViewBag.Name</p>
+<p>This post was created by </p>
 
 <h2>Post Details: @Html.DisplayFor(model => model.Title)</h2>
 
 <p>Source: @Html.DisplayFor(model => model.Source)</p>
 <p>Body: @Html.DisplayFor(model => model.Body)</p>
 <p>Published: @Html.DisplayFor(model => model.Published)</p>
+
+@if (@Model.Zines.Count == 0)
+{
+  <p>This post doesn't belong to any of zines yet</p>
+}
+else
+{
+  <h4>Zines where this post was published:</h4>
+  int x = 0;
+  foreach(var join in Model.Zines)
+  { 
+    x++;
+    <h4>@x. @join.Zine.Name </h4>
+    @using (Html.BeginForm("DeleteZine", "Posts"))
+    {
+      @Html.Hidden("joinId", @join.PostZineId)
+      <input type="submit" value="Delete Zine?"/>
+    }
+  }
+}
+
+@* <div>
+  <form method="post">
+    <input type="hidden" asp-for="joinId" value="@join.PostZineId"/>
+    <input type="submit" asp-controller="Posts" asp-action="DeleteZine" asp-route-id="@join.PostZineId" value="Delete Zine?"/>
+  </form>
+</div>
+
+<form asp-controller="Posts" asp-action="DeleteZine"  asp-route-id="@join.PostZineId" method="post">
+  <input class="btn btn-light" type="submit" value="DeleteZine">
+</form> *@
+
 
 @if (@Model.Tags.Count == 0)
 {
@@ -35,6 +67,7 @@ else
 <div class="btn-menu">
   <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.PostId">Edit post</a>
   <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.PostId">Delete post</a>
+  <a class="btn btn-light" asp-action="AddZine" asp-route-id="@Model.PostId">Add zine</a>
   <a class="btn btn-light" asp-controller="Tags" asp-action="Create">Add tag</a>
 </div>
 @* } *@
