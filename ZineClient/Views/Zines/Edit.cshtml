@@ -5,7 +5,8 @@
 <div class="registration-form">
   <form asp-controller="Zines" asp-action="Edit" method="post">
 
-    <input type="hidden" asp-for="@Model.ZineId" value="ZineId">
+    <input type="hidden" value="@Model.ZineId"  asp-for="ZineId" >
+    <input type="hidden" value="@Model.OrganizationId" asp-for="OrganizationId">
     @* <input type="hidden" asp-for="@ViewBag.Organization.OrganizationId" value="OrganizationId">   *@
     @* @Html.HiddenFor(model => model.ZineId) *@
 
