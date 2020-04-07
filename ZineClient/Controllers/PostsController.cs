@@ -20,40 +20,40 @@ namespace ZineClient.Controllers
       _db = db;
     }
 
-    // public ActionResult Index()
-    // {
-    //   List<Post> model = _db.Posts.ToList();
-    //   return View(model);
-    // }
+    public ActionResult Index()
+    {
+      List<Post> model = _db.Posts.ToList();
+      return View(model);
+    }
 
     public ActionResult Create()
     {
+      ViewBag.ZineId = new SelectList(_db.Zines, "ZineId", "Name");
       return View();
     }
 
-    // [HttpPost]
-    // public async Task<ActionResult> Create(Organization organization)
-    // {
-    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    //   var currentUser = await _userManager.FindByIdAsync(userId);
-    //   organization.Owner = currentUser;
+    [HttpPost]
+    public ActionResult Create(Post post, int ZineId)
+    {
+      _db.Posts.Add(post);
+      if (ZineId != 0)
+      {
+        _db.PostZine.Add(new PostZine() { ZineId = ZineId, PostId = post.PostId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", "Zines", new {id = ZineId});
+    }
 
-    //   _db.Organizations.Add(organization);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [AllowAnonymous]
+    public ActionResult Details(int id)
+    {
+      var thisPost = _db.Posts
+      .Include(o => o.Zines)
+      .ThenInclude(join => join.Zine)
+      .FirstOrDefault(o => o.PostId == id);
 
-    // [AllowAnonymous]
-    // public ActionResult Details(int id)
-    // {
-    //   var thisOrganization = _db.Organizations
-    //   .Include(o => o.ApplicationUsers)
-    //   .ThenInclude(join => join.ApplicationUser)
-    //   .Include(o => o.Zines)
-    //   .FirstOrDefault(o => o.OrganizationId == id);
-
-    //   return View(thisOrganization);
-    // }
+      return View(thisPost);
+    }
 
     // public ActionResult Edit(int id)
     // {
@@ -76,14 +76,20 @@ namespace ZineClient.Controllers
     //   return View("Delete", thisOrganization);
     // }
 
-    // [HttpPost]
-    // public ActionResult Delete(int id)
-    // {
-    //   var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);
-    //   _db.Organizations.Remove(thisOrganization);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    public ActionResult Delete(int id)
+    {
+      var thisPost = _db.Posts.FirstOrDefault(posts => posts.PostId == id);
 
+      return View(thisPost);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisPost = _db.Posts.FirstOrDefault(posts => posts.PostId == id);
+      _db.Posts.Remove(thisPost);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

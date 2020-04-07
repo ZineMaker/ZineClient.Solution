@@ -1,1 +1,15 @@
 page not needed?
+
+
+@model List<ZineClient.Models.Post>;
+
+<h1>Posts</h1>
+
+<ul>
+  @foreach(Post post in Model)
+  {
+      <li>@Html.ActionLink($"{post.Title}", "Details", new { id = post.PostId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new post", "Create")</p>

@@ -5,7 +5,7 @@
 <div class="registration-form">
   <form asp-controller="Zines" asp-action="Create" method="post">
 
-    <input type="hidden" asp-for="OrganizationId" value="@ViewBag.OrganizationId">
+    <input type="hidden" asp-for="@Model.OrganizationId" value="@ViewBag.OrganizationId">
 
     <div class="form-group">
       <label for="Name">Name</label>

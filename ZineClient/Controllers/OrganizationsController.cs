@@ -73,17 +73,33 @@ namespace ZineClient.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult CheckDelete(int id)
-    {
-      var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);
+    // public ActionResult CheckDelete(int id)
+    // {
+    //   var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
 
-      return View("Delete", thisOrganization);
-    }
+    //   return View("Delete", thisOrganization);
+    // }
 
-    [HttpPost]
+    // [HttpPost]
+    // public ActionResult Delete(int id)
+    // {
+    //   var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
+    //   _db.Organizations.Remove(thisOrganization);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+
     public ActionResult Delete(int id)
     {
-      var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);
+      var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
+
+      return View(thisOrganization);
+    }
+
+     [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
       _db.Organizations.Remove(thisOrganization);
       _db.SaveChanges();
       return RedirectToAction("Index");

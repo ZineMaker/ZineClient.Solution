@@ -10,6 +10,8 @@
 
 <h2>Organization Details: @Html.DisplayFor(model => model.Name)</h2>
 
+<p>Description: @Html.DisplayFor(model => model.Description)</p>
+
 @if (@Model.ApplicationUsers.Count == 0)
 {
   <p>This organization doesn't have users yet</p>
@@ -33,7 +35,7 @@ else
   <p></p>
   foreach(Zine zine in Model.Zines)
   {
-    <li>@zine.Name (@zine.IssueNumber)  
+    <li>@Html.ActionLink($"{@zine.Name}", "Details", new { id = zine.ZineId })   
       @* @if (Model.Owner == User.Identity)
       { *@
         <a asp-controller="Zines" asp-action="CheckDelete" asp-route-id="@zine.ZineId">Delete zine?</a>

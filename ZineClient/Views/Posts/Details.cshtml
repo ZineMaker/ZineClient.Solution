@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "@Model.Name";
+}
+
+@model ZineClient.Models.Post
+
+<p>This post was created by @ViewBag.Name</p>
+
+<h2>Post Details: @Html.DisplayFor(model => model.Title)</h2>
+
+<p>Source: @Html.DisplayFor(model => model.Source)</p>
+<p>Body: @Html.DisplayFor(model => model.Body)</p>
+<p>Published: @Html.DisplayFor(model => model.Published)</p>
+
+@if (@Model.Tags.Count == 0)
+{
+  <p>This post doesn't have tags yet</p>
+}
+else
+{
+  <p></p>
+  foreach(var join in Model.Tags)
+  {
+    <li>@join.Tag.Name 
+      @* @if (Model.Organization.Owner == User.Identity)
+      { *@
+        <a asp-controller="Tags" asp-action="Delete" asp-route-id="@join.Tag.TagId">Delete tag?</a>
+      @* } *@
+    </li>
+  }
+}
+
+@* @if (Model.Organization.Owner == User.Identity)
+{ *@
+<div class="btn-menu">
+  <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.PostId">Edit post</a>
+  <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.PostId">Delete post</a>
+  <a class="btn btn-light" asp-controller="Tags" asp-action="Create">Add tag</a>
+</div>
+@* } *@
+
+

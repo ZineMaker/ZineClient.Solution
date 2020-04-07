@@ -4,7 +4,13 @@
 
 @model ZineClient.Models.Zine
 
-<p>This zine was created by @Model.Organization.Name</p>
+<p>This zine was created by @ViewBag.Name</p>
+
+<h2>Zine Details: @Html.DisplayFor(model => model.Name)</h2>
+
+<p>Description: @Html.DisplayFor(model => model.Description)</p>
+<p>Publication Date: @Html.DisplayFor(model => model.PublicationDate)</p>
+<p>Issue Number: @Html.DisplayFor(model => model.IssueNumber)</p>
 
 @if (@Model.Posts.Count == 0)
 {
@@ -26,9 +32,9 @@ else
 
 @* @if (Model.Organization.Owner == User.Identity)
 { *@
-<div class="footer">
+<div class="btn-menu">
   <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.ZineId">Edit zine</a>
-  <a class="btn btn-light" asp-action="CheckDelete" asp-route-id="@Model.ZineId">Delete zine</a>
+  <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.ZineId">Delete zine</a>
   <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
 </div>
 @* } *@

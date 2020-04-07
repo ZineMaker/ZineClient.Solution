@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using System;
 
 namespace ZineClient.Controllers
 {
@@ -57,13 +58,16 @@ namespace ZineClient.Controllers
       .ThenInclude(join => join.Post)
       .FirstOrDefault(o => o.ZineId == id);
 
+      var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == thisZine.OrganizationId);
+      ViewBag.Name = thisOrganization.Name;
       return View(thisZine);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisZine = _db.Zines.FirstOrDefault(zine => zine.ZineId == id);
-
+      var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
+      var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == thisZine.OrganizationId);
+      ViewBag.Organization = thisOrganization;
       return View(thisZine);
     }
 
@@ -74,17 +78,17 @@ namespace ZineClient.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult CheckDelete(int id)
-    {
-      var thisZine = _db.Zines.FirstOrDefault(zine => zine.ZineId == id);
-
-      return View("Delete", thisZine);
-    }
-
-    [HttpPost]
     public ActionResult Delete(int id)
     {
-      var thisZine = _db.Zines.FirstOrDefault(zine => zine.ZineId == id);
+      var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
+
+      return View(thisZine);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
       _db.Zines.Remove(thisZine);
       _db.SaveChanges();
       return RedirectToAction("Index");

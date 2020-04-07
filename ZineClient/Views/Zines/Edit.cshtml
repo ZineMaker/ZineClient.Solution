@@ -1,0 +1,34 @@
+@model ZineClient.Models.Zine
+<h1>Edit Zine</h1>
+
+
+<div class="registration-form">
+  <form asp-controller="Zines" asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="@Model.ZineId" value="ZineId">
+    @* <input type="hidden" asp-for="@ViewBag.Organization.OrganizationId" value="OrganizationId">   *@
+    @* @Html.HiddenFor(model => model.ZineId) *@
+
+    <div class="form-group">
+      <label for="Name">Name</label>
+      <input class="form-control" asp-for="Name">
+    </div>
+
+    <div class="form-group">
+      <label for="Description">Description</label>
+      <textarea rows="8" class="form-control" asp-for="Description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="PublicationDate">Publication Date</label>
+      <input type="date" class="form-control" asp-for="PublicationDate">
+    </div>
+
+    <div class="form-group">
+      <label for="IssueNumber">Issue Number</label>
+      <input type="number" class="form-control" asp-for="IssueNumber">
+    </div>    
+
+    <input class="btn btn-light" type="submit" value="Edit">
+  </form>
+</div>

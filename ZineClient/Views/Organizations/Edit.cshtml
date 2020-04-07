@@ -5,7 +5,8 @@
 <div class="registration-form">
   <form asp-controller="Organizations" asp-action="Edit" method="post">
 
-    <input type="hidden" asp-for="Owner" value="@User">
+    <input type="hidden" value="@Model.OrganizationId" asp-for="OrganizationId">
+    @* @Html.HiddenFor(model => model.OrganizationId) *@
 
     <div class="form-group">
       <label for="Name">Name</label>
@@ -14,7 +15,7 @@
 
     <div class="form-group">
       <label for="Description">Description</label>
-      <input class="form-control" asp-for="Description">
+      <textarea rows="8" class="form-control" asp-for="Description"></textarea>
     </div>
 
     <input class="btn btn-light" type="submit" value="Edit">

@@ -20,9 +20,8 @@
       <textarea rows="8" class="form-control" asp-for="Body"></textarea>
     </div>
 
-    @* tags *@
-
-    @* zine dropdown? *@
+    @Html.Label("Select zine")
+    @Html.DropDownList("ZineId")
 
     <input class="btn btn-light" type="submit" value="Create">
   </form>
