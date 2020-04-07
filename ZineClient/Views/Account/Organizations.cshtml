@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Identity
+
 @* @model List<ZineClient.Models.Organization>; *@
   @model ZineClient.Models.ApplicationUser
 
@@ -10,9 +12,15 @@
 else
 {
   <ul>
-    @foreach(var join in ViewBag.MyOrganizations)
+    @* @foreach(var join in ViewBag.MyOrganizations)
     {
-        <li><a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</a></li>
+      <p>Item #test</p>
+      <li><a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</a></li>
+    } *@
+    @foreach (var join in Model.Organizations)
+    {
+      <p>test</p>
+      <a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization</a>
     }
   </ul>
 }
