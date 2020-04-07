@@ -43,7 +43,7 @@ namespace ZineClient.Controllers
       // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       // var currentUser = await _userManager.FindByIdAsync(userId);
       // organization.Owner = currentUser;
-      zine.Organization = _db.Organizations.FirstOrDefault(o => o.OrganizationId == zine.OrganizationId);
+      // zine.Organization = _db.Organizations.FirstOrDefault(o => o.OrganizationId == zine.OrganizationId);
 
       _db.Zines.Add(zine);
       _db.SaveChanges();

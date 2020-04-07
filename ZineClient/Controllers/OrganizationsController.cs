@@ -42,6 +42,8 @@ namespace ZineClient.Controllers
       organization.Owner = currentUser;
 
       _db.Organizations.Add(organization);
+      _db.ApplicationUserOrganization.Add(new ApplicationUserOrganization() { ApplicationUser = currentUser, OrganizationId = organization.OrganizationId });
+
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -96,7 +98,7 @@ namespace ZineClient.Controllers
       return View(thisOrganization);
     }
 
-     [HttpPost, ActionName("Delete")]
+    [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
       var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
