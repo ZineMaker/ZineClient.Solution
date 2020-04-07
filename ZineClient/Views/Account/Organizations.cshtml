@@ -11,7 +11,6 @@ else
   <ul>
     @foreach (var join in Model.Organizations)
     {
-      <p>test</p>
       <a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</a>
     }
   </ul>

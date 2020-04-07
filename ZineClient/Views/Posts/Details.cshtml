@@ -8,7 +8,6 @@
 
 <h2>Post Details: @Html.DisplayFor(model => model.Title)</h2>
 
-<p>Source: @Html.DisplayFor(model => model.Source)</p>
 <p>Body: @Html.DisplayFor(model => model.Body)</p>
 <p>Published: @Html.DisplayFor(model => model.Published)</p>
 
@@ -31,6 +30,8 @@ else
     }
   }
 }
+
+<img src="@Model.Source" class="img-fluid">
 
 @* <div>
   <form method="post">
