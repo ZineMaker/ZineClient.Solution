@@ -5,7 +5,7 @@
 <ul>
   @foreach(Organization organization in Model)
   {
-      <li>@Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</li>
+    <li>@Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</li>
   }
 </ul>
 
