@@ -26,7 +26,6 @@ namespace ZineClient.Controllers
 
     public ActionResult Index()
     {
-
       return View();
     }
     public async Task<ActionResult> Organizations()
@@ -34,9 +33,9 @@ namespace ZineClient.Controllers
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
 
-      List<Organization> model = _db.Organizations.Where(o => o.Owner.Id == currentUser.Id).ToList();
+      ViewBag.MyOrganizations = _db.ApplicationUserOrganization.Where(join => join.ApplicationUser == currentUser).ToList();
 
-      return View();
+      return View(currentUser);
     }
 
     public ActionResult Posts()

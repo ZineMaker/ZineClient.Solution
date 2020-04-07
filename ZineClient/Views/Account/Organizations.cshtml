@@ -1,18 +1,18 @@
-@model List<ZineClient.Models.Organization>;
+@* @model List<ZineClient.Models.Organization>; *@
+  @model ZineClient.Models.ApplicationUser
 
 <h1>My organizations</h1>
 
-if (Model.Count == 0)
+@if (ViewBag.MyOrganizations.Count == 0)
 {
   <p>You have not joined any organizations yet.</p>
 }
 else
-{...............................................................................................................................................................
+{
   <ul>
-    @foreach(var organization in Model)
+    @foreach(var join in ViewBag.MyOrganizations)
     {
-        <li><a asp-controller="Organizations" asp-action="Details" >@organization.Name</a>
-          @Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</li>
+        <li><a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</a></li>
     }
   </ul>
 }
