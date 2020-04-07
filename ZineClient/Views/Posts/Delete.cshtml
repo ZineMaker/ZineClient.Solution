@@ -1,0 +1,13 @@
+@model ZineClient.Models.Post
+
+
+<h1>Delete Post</h1>
+
+<h4>Are you sure you want to delete this post?</h4>
+
+<div class="registration-form">
+  <form asp-controller="Posts" asp-action="Delete" method="post">
+    <input type="hidden" value="@Model.PostId" asp-for="PostId">
+    <input class="btn btn-light" type="submit" value="Delete">
+  </form>
+</div>
