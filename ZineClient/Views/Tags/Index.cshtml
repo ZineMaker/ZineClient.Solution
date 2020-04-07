@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Tags";
+}
+
+@model List<ZineClient.Models.Tag>
+
+<div class="text-center">
+    <h1 class="display-4">Curate your content:</h1>
+    <p>Check out these tags to filter posts</p>
+</div>
+
+<div class="tag-index">
+  @foreach (Tag tag in Model)
+  {
+    <a asp-action="Details" asp-route-id="tag.TagId">#@tag.Name</a>
+  }
+</div>
