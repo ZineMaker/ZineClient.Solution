@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using System;
 
 namespace ZineClient.Controllers
 {
@@ -15,8 +16,11 @@ namespace ZineClient.Controllers
   public class PostsController : Controller
   {
     private readonly ZineClientContext _db;
-    public PostsController(ZineClientContext db)
+
+    private readonly UserManager<ApplicationUser> _userManager;
+    public PostsController(UserManager<ApplicationUser> userManager, ZineClientContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -33,15 +37,20 @@ namespace ZineClient.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Post post, int ZineId)
+    public async Task<ActionResult> Create(Post post, int ZineId)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      post.ApplicationUser = currentUser;
+      post.Published = DateTime.Now;
+
       _db.Posts.Add(post);
       if (ZineId != 0)
       {
         _db.PostZine.Add(new PostZine() { ZineId = ZineId, PostId = post.PostId });
       }
       _db.SaveChanges();
-      return RedirectToAction("Details", "Zines", new {id = ZineId});
+      return RedirectToAction("Details", "Zines", new { id = ZineId });
     }
 
     [AllowAnonymous]
