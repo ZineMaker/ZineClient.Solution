@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "@Model.Name";
 }
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 @model ZineClient.Models.Post
 
@@ -8,7 +9,16 @@
 
 <h2>Post Details: @Html.DisplayFor(model => model.Title)</h2>
 
-<p>Body: @Html.DisplayFor(model => model.Body)</p>
+@* <p>Body: @Html.DisplayFor(model => model.Body)</p> *@
+
+<p>Body</p>
+
+<div id="editor"><p>test</p></div>
+
+<div id="non-quill-div"></div>
+
+<div id="model-body">@Model.Body</div>
+
 <p>Published: @Html.DisplayFor(model => model.Published)</p>
 
 @if (@Model.Zines.Count == 0)
@@ -73,4 +83,14 @@ else
 </div>
 @* } *@
 
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+  var bodyContent = document.getElementById('#non-quill-div').innerText;
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+  document.getElementById('#non-quill-div').innerHTML = bodyContent;
+  quill.setText("hello devs");
 
+  
+</script>

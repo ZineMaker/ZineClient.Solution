@@ -93,11 +93,13 @@ namespace ZineClient.Controllers
 
     public ActionResult AddUser(int id)
     {
-      return View();
+      var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
+
+      return View(thisOrganization);
     }
 
     [HttpPost]
-    public ActionResult AddUser(Organization organization, int id)
+    public ActionResult AddUser(Organization organization, int ApplicationUserId)
     {
       return View();
     }

@@ -1,0 +1,13 @@
+@model ZineClient.Models.ApplicationUser
+
+<h2> Add user to one more zine</h2>
+
+<div class="registration-form">
+  <form asp-controller="Organizations" asp-action="AddUser" method="post">
+
+    <input type="hidden" value="@Model.ApplicationUserId"  asp-for="ApplicationUserId">
+    @Html.Label("Select user")
+    @Html.DropDownList("ApplicationUserId")
+
+  <input class="btn btn-light" type="submit" value="AddUser">
+</form>

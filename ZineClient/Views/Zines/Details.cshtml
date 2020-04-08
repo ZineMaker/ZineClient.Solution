@@ -3,45 +3,61 @@
     ViewData["Title"] = "@Model.Name";
 }
 
-<div class=jumbotron>
-  <h1>@Html.DisplayFor(model => model.IssueNumber). @Html.DisplayFor(model => model.Name)</h1>
-  <p>by @ViewBag.Name</p>
-  <p>@Model.PublicationDate.ToString("MM/dd/yyyy")</p>
-</div>
-  
-  <p>@Html.DisplayFor(model => model.Description)</p>
+@* <body style="background-image: url(@Model.MainImageUrl); width:800px; height:600px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; background-color: lightgrey; background-blend-mode: screen;"> *@
+<body>
+  <div class=jumbotron>
+    <h1>@Html.DisplayFor(model => model.IssueNumber). @Html.DisplayFor(model => model.Name)</h1>
+    <p>by @ViewBag.Name</p>
+    <p>@Model.PublicationDate.ToString("MM/dd/yyyy")</p>
+  </div>
+    
+    <p>@Html.DisplayFor(model => model.Description)</p>
 
-  
+    
 
-@if (@Model.Posts.Count == 0)
-{
-  <p>This zine doesn't have posts yet</p>
-}
-else
-{
-  <p></p>
-  foreach(var join in Model.Posts)
-  { 
-    <div class="post">
-          <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
-      <p>@join.Post.Published</p>
-      <p>@join.Post.Body</p>
-      <img src="@join.Post.Source" class="img-fluid img-thumbnail">
+  @if (@Model.Posts.Count == 0)
+  {
+    <p>This zine doesn't have posts yet</p>
+  }
+  else
+  {
+    <p></p>
+    foreach(var join in Model.Posts)
+    { 
+      <div class="post">
+        <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
+        @join.Post.Published<
+        <p>@join.Post.Body</p>
+        @if (@join.Post.Source != null)
+        {
+        <img src="@join.Post.Source" class="img-fluid img-thumbnail">
+        }
+        else
+        {
+        <img class="img-fluid" src="@ViewBag.Random">
+        }
         @if (User.Identity.IsAuthenticated)
         {
           <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
         }
-    </div>
+      </div>
+    }
   }
-}
 
-@if (User.Identity.IsAuthenticated)
-{
-<div class="btn-menu">
-  <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.ZineId">Edit zine</a>
-  <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.ZineId">Delete zine</a>
-  <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
-</div>
-}
+  @if (User.Identity.IsAuthenticated)
+  {
+  <div class="btn-menu">
+    <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.ZineId">Edit zine</a>
+    <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.ZineId">Delete zine</a>
+    <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
+  </div>
+  }
+</body>
 
+
+@{
+
+
+
+}
 

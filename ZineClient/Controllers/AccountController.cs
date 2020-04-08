@@ -101,6 +101,9 @@ namespace ZineClient.Controllers
       return RedirectToAction("Index", "Home");
     }
 
-
+    public ActionResult AddAvatar()
+    {
+      return View();
+    }
   }
 }

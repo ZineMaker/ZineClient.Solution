@@ -52,6 +52,7 @@ else
     <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
     <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.OrganizationId">Delete organization</a>
     <a class="btn btn-light" asp-controller="Zines" asp-action="Create" asp-route-id="@Model.OrganizationId">Add zine</a>
+    <a class="btn btn-light" asp-controller="Organizations" asp-action="AddUser" asp-route-id="@Model.OrganizationId">Add user</a>
   </div>
 }
 

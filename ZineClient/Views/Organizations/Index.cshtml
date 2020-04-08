@@ -8,7 +8,14 @@
 @foreach(Organization organization in Model)
 {
   <h4>@Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</h4>
-  <img class="img-fluid" src="@organization.MainImageUrl">
+  @if (@organization.MainImageUrl != null)
+  {
+    <img class="img-fluid" src="@organization.MainImageUrl">
+  }
+  else
+  {
+    <img class="img-fluid" src="  https://www.slashfilm.com/wp/wp-content/images/community-e1573493023671.jpg">
+  }
 }
 
 @if (User.Identity.IsAuthenticated)

@@ -21,7 +21,14 @@
     @foreach (Zine zine in Model)
     {
         <div class="zine-thumbnail">
-            <img class="zine-cover" src="@zine.MainImageUrl">
+            @if (@zine.MainImageUrl != null)
+            {
+                <img class="zine-cover" src="@zine.MainImageUrl">
+            }
+            else
+            {
+                <img class="zine-cover" src="https://www.rcsdk8.org/sites/main/files/main-images/camera_lense_0.jpeg">
+            }
             <div class="overlay">
                 <div class="zine-details-link">
                     @Html.ActionLink($"{zine.Name}", "Details", new { id = zine.ZineId })
@@ -30,3 +37,4 @@
         </div>
     }
 </div>
+
