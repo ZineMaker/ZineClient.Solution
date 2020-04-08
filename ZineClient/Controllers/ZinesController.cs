@@ -62,41 +62,42 @@ namespace ZineClient.Controllers
       var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == thisZine.OrganizationId);
       ViewBag.Name = thisOrganization.Name;
 
-      Random random = new Random();
-      string[] links = { "https://www.slashgear.com/wp-content/uploads/2019/12/frozen_moonrise_main-1280x720.jpg"; "https://i.imgur.com/RRUe0Mo.png"; "https://scipy-lectures.org/_images/face.png" }
-    ViewBag.Random = random.Next(0, links.Length);
+      //   Random random = new Random();
+      //   string[] links = { "https://www.slashgear.com/wp-content/uploads/2019/12/frozen_moonrise_main-1280x720.jpg"; "https://i.imgur.com/RRUe0Mo.png"; "https://scipy-lectures.org/_images/face.png" }
+      // 
+      ViewBag.Random = random.Next(0, links.Length);
       return View(thisZine);
-  }
+    }
 
-  public ActionResult Edit(int id)
-  {
-    var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
-    // var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == thisZine.OrganizationId);
-    // ViewBag.Organization = thisOrganization;
-    return View(thisZine);
-  }
+    public ActionResult Edit(int id)
+    {
+      var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
+      // var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == thisZine.OrganizationId);
+      // ViewBag.Organization = thisOrganization;
+      return View(thisZine);
+    }
 
-  [HttpPost]
-  public ActionResult Edit(Zine zine)
-  {
-    _db.Entry(zine).State = EntityState.Modified;
-    _db.SaveChanges();
-    return RedirectToAction("Details", "Zines", new { id = zine.ZineId });
-  }
-  public ActionResult Delete(int id)
-  {
-    var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
+    [HttpPost]
+    public ActionResult Edit(Zine zine)
+    {
+      _db.Entry(zine).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Details", "Zines", new { id = zine.ZineId });
+    }
+    public ActionResult Delete(int id)
+    {
+      var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
 
-    return View(thisZine);
-  }
+      return View(thisZine);
+    }
 
-  [HttpPost, ActionName("Delete")]
-  public ActionResult DeleteConfirmed(int id)
-  {
-    var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
-    _db.Zines.Remove(thisZine);
-    _db.SaveChanges();
-    return RedirectToAction("Details", "Organizations", new { id = thisZine.OrganizationId });
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisZine = _db.Zines.FirstOrDefault(zines => zines.ZineId == id);
+      _db.Zines.Remove(thisZine);
+      _db.SaveChanges();
+      return RedirectToAction("Details", "Organizations", new { id = thisZine.OrganizationId });
+    }
   }
-}
 }

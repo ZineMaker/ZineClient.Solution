@@ -99,9 +99,15 @@ namespace ZineClient.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddUser(Organization organization, int ApplicationUserId)
+    public async Task<ActionResult> AddUser(Organization organization)
     {
-      return View();
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+
+      _db.ApplicationUserOrganization.Add(new ApplicationUserOrganization() { ApplicationUser = currentUser, OrganizationId = organization.OrganizationId });
+      _db.SaveChanges();
+
+      return RedirectToAction("Index");
     }
   }
 }

@@ -152,7 +152,9 @@ img {
 
 /* a normal, unvisited link */
 a:link {
-  color: gray;
+  color: #1b80b7;
+  transition: all 0.2s linear;
+  /* color: gray; */
   text-decoration: none;
 }
 /* a link the user has visited */
@@ -162,10 +164,15 @@ a:visited {
 }
 /* a link when the user mouses over it */
 a:hover {
+  color: #52bff2;
   text-decoration: none;
   /* font-weight: 200; */
 }
 /* a link the moment it is clicked */
 a:active {
   text-decoration: none;
+}
+
+img:before {
+  content: "We're sorry, the image below is broken :(";
 }

@@ -1,13 +1,12 @@
-@model ZineClient.Models.ApplicationUser
+@model ZineClient.Models.Organization
 
-<h2> Add user to one more zine</h2>
+<h1>@Model.Name</h1>
+<h2>Join this organization</h2>
 
 <div class="registration-form">
   <form asp-controller="Organizations" asp-action="AddUser" method="post">
 
-    <input type="hidden" value="@Model.ApplicationUserId"  asp-for="ApplicationUserId">
-    @Html.Label("Select user")
-    @Html.DropDownList("ApplicationUserId")
+    <input type="hidden" value="@Model.OrganizationId"  asp-for="OrganizationId">
 
-  <input class="btn btn-light" type="submit" value="AddUser">
-</form>
+  <input class="btn btn-light" type="submit" value="Yes, join">
+</form> 
