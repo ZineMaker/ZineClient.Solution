@@ -1,8 +1,7 @@
+@model ZineClient.Models.Zine
 @{
     ViewData["Title"] = "@Model.Name";
 }
-
-@model ZineClient.Models.Zine
 
 <div class=jumbotron>
   <h2>@Html.DisplayFor(model => model.Name) (@Html.DisplayFor(model => model.IssueNumber))</h2>

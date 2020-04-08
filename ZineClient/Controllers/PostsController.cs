@@ -30,6 +30,11 @@ namespace ZineClient.Controllers
       return View(model);
     }
 
+    public ActionResult Test()
+    {
+      return View();
+    }
+
     public ActionResult Create()
     {
       ViewBag.ZineId = new SelectList(_db.Zines, "ZineId", "Name");

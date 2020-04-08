@@ -75,22 +75,6 @@ namespace ZineClient.Controllers
       return RedirectToAction("Index");
     }
 
-    // public ActionResult CheckDelete(int id)
-    // {
-    //   var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
-
-    //   return View("Delete", thisOrganization);
-    // }
-
-    // [HttpPost]
-    // public ActionResult Delete(int id)
-    // {
-    //   var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
-    //   _db.Organizations.Remove(thisOrganization);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
-
     public ActionResult Delete(int id)
     {
       var thisOrganization = _db.Organizations.FirstOrDefault(organizations => organizations.OrganizationId == id);
@@ -107,9 +91,15 @@ namespace ZineClient.Controllers
       return RedirectToAction("Index");
     }
 
-    // public ActionResult AddZine(int id)
-    // {
+    public ActionResult AddUser(int id)
+    {
+      return View();
+    }
 
-    // }
+    [HttpPost]
+    public ActionResult AddUser(Organization organization, int id)
+    {
+      return View();
+    }
   }
 }
