@@ -4,12 +4,14 @@
 }
 
 <div class=jumbotron>
-  <h2>@Html.DisplayFor(model => model.Name) (@Html.DisplayFor(model => model.IssueNumber))</h2>
-  <p>Created by @ViewBag.Name</p>
-  <p>@Html.DisplayFor(model => model.Description)</p>
-  <p>@Html.DisplayFor(model => model.PublicationDate)</p>
+  <h1>@Html.DisplayFor(model => model.IssueNumber). @Html.DisplayFor(model => model.Name)</h1>
+  <p>by @ViewBag.Name</p>
+  <p>@Model.PublicationDate.ToString("MM/dd/yyyy")</p>
 </div>
+  
+  <p>@Html.DisplayFor(model => model.Description)</p>
 
+  
 
 @if (@Model.Posts.Count == 0)
 {

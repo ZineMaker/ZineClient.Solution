@@ -7,23 +7,11 @@
 
 @model ZineClient.Models.Organization
 
-.
-<h2>Organization Details: @Html.DisplayFor(model => model.Name)</h2>
-
-<p>Description: @Html.DisplayFor(model => model.Description)</p>
-
-@if (@Model.ApplicationUsers.Count == 0)
-{
-  <p>This organization doesn't have users yet</p>
-}
-else
-{
-  <p></p>
-  foreach(var join in Model.ApplicationUsers)
-  {
-    <li>@join.ApplicationUser.FirstName @join.ApplicationUser.LastName</li>
-  }
-}
+<div class="jumbotron">
+  <h1>@Html.DisplayFor(model => model.Name)</h1>
+  <br>
+  <p> @Html.DisplayFor(model => model.Description)</p>
+</div>
 
 
 @if (@Model.Zines.Count == 0)
@@ -32,26 +20,39 @@ else
 }
 else
 {
-  <p></p>
   foreach(Zine zine in Model.Zines)
   {
     <h4><a asp-controller="Zines" asp-action="Details" asp-route-id="@zine.ZineId">@zine.Name</a></h4>
-      @* @if (Model.Owner == User.Identity)
-      { *@
+    <img class="img-fluid" src="@zine.MainImageUrl">
+      @if (User.Identity.IsAuthenticated)
+      { 
         <p><a asp-controller="Zines" asp-action="Delete" asp-route-id="@zine.ZineId">Delete zine?</a></p>
-      @* } *@
+      }
   }
 }
 
 
+@if (@Model.ApplicationUsers.Count == 0)
+{
+  <p>This organization doesn't have users yet</p>
+}
+else
+{ 
+  <p>Members:</p>
+  foreach(var join in Model.ApplicationUsers)
+  {
+    <p>@join.ApplicationUser.FirstName @join.ApplicationUser.LastName</p>
+  }
+}
 
-@* @if (User.Identity.Id == Organization.Owner.ApplicationUserId)
-{ *@
-<div class="btn-menu">
-  <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
-  <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.OrganizationId">Delete organization</a>
-  <a class="btn btn-light" asp-controller="Zines" asp-action="Create" asp-route-id="@Model.OrganizationId">Add zine</a>
-</div>
-@* } *@
+
+@if (User.Identity.IsAuthenticated)
+{
+  <div class="btn-menu">
+    <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
+    <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.OrganizationId">Delete organization</a>
+    <a class="btn btn-light" asp-controller="Zines" asp-action="Create" asp-route-id="@Model.OrganizationId">Add zine</a>
+  </div>
+}
 
 

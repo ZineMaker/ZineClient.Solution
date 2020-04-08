@@ -1,12 +1,19 @@
 @model List<ZineClient.Models.Organization>;
 
-<h1>Organizations</h1>
+<div class="jumbotron">
+  <h1>Organizations</h1>
+</div>
 
-<ul>
-  @foreach(Organization organization in Model)
-  {
-    <li>@Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</li>
-  }
-</ul>
 
-<p>@Html.ActionLink("Add new organization", "Create")</p>
+@foreach(Organization organization in Model)
+{
+  <h4>@Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</h4>
+  <img class="img-fluid" src="@organization.MainImageUrl">
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+<div class="btn-menu">
+  <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">Add organization</a>
+</div>
+}

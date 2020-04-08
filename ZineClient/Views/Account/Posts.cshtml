@@ -1,6 +1,8 @@
 @model ZineClient.Models.ApplicationUser
 
-<h1>My posts</h1>
+<div class="jumbotron">
+  <h1>My posts</h1>
+</div>
 
 @if (Model.Posts.Count == 0)
 {
@@ -8,10 +10,11 @@
 }
 else
 {
-  <ul>
-    @foreach (var post in Model.Posts)
-    {
-      <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.PostId">@post.Title</a>
-    }
-  </ul>
+  @foreach (var post in Model.Posts)
+  {
+    <h4 asp-controller="Posts" asp-action="Details" asp-route-id="@post.PostId">@post.Title</h4>
+    <p>@post.Published</p>
+    <p>@post.Body</p>
+    <img class="img-fluid" src="@post.Source">
+  }
 }

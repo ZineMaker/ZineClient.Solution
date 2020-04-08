@@ -1,6 +1,8 @@
 @model ZineClient.Models.ApplicationUser
 
-<h1>My organizations</h1>
+<div class="jumbotron">
+  <h1>My organizations</h1>
+</div>
 
 @if (Model.Organizations.Count == 0)
 {
@@ -11,7 +13,8 @@ else
   <ul>
     @foreach (var join in Model.Organizations)
     {
-      <a asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</a>
+      <h4 asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</h4>
+      <img class="img-fluid" src="@join.Organization.MainImageUrl">
     }
   </ul>
 }

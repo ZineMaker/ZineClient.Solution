@@ -2,8 +2,11 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-  <h1>My Account</h1>
-  <p>Logged in as @User.Identity.Name</p>
+  <div class="jumbotron">
+    <h1>My account</h1>
+    <p>Logged in as @User.Identity.Name</p>
+  </div>  
+
 
   @* @if (@Model.Posts.Count == 0)
   {
@@ -22,18 +25,20 @@
     }
   }
    *@
-  <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">Create an organization</a>
-  <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
-  
-  <form asp-controller="Account" asp-action="Logoff" method="post">
-    <input class="btn btn-light" type="submit" value="Sign out">
-  </form>
-  
+
+  <div class="btn-menu">
+    <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">Create an organization</a>
+    <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
+    <form asp-controller="Account" asp-action="Logoff" method="post">
+      <input class="btn btn-light" type="submit" value="Sign out">
+    </form>
+  </div>
 }
 else
 {
-  <h1>Account</h1>
-  <a class="btn btn-light" asp-action="Register">Sign Up</a>
-  <a class="btn btn-light" asp-action="Login">Login</a>
-
+  <div class="btn-menu">
+    <h1>Account</h1>
+    <a class="btn btn-light" asp-action="Register">Sign Up</a>
+    <a class="btn btn-light" asp-action="Login">Login</a>
+  </div>
 }
