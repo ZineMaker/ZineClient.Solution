@@ -153,6 +153,7 @@ img {
 /* a normal, unvisited link */
 a:link {
   color: #1b80b7;
+  /* color: white; */
   transition: all 0.2s linear;
   /* color: gray; */
   text-decoration: none;
@@ -165,6 +166,7 @@ a:visited {
 /* a link when the user mouses over it */
 a:hover {
   color: #52bff2;
+  /* color: white; */
   text-decoration: none;
   /* font-weight: 200; */
 }

@@ -9,8 +9,8 @@ using ZineClient.Models;
 namespace ZineClient.Migrations
 {
     [DbContext(typeof(ZineClientContext))]
-    [Migration("20200406173940_EditApplicationUserOrganizationId")]
-    partial class EditApplicationUserOrganizationId
+    [Migration("20200408222109_PostSeed")]
+    partial class PostSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,7 +195,7 @@ namespace ZineClient.Migrations
 
                     b.HasIndex("OrganizationId");
 
-                    b.ToTable("ApplicationsUserOrganization");
+                    b.ToTable("ApplicationUserOrganization");
                 });
 
             modelBuilder.Entity("ZineClient.Models.Organization", b =>
@@ -205,11 +205,42 @@ namespace ZineClient.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<byte[]>("MainImageFile");
+
+                    b.Property<string>("MainImageUrl");
+
                     b.Property<string>("Name");
+
+                    b.Property<string>("OwnerId");
 
                     b.HasKey("OrganizationId");
 
+                    b.HasIndex("OwnerId");
+
                     b.ToTable("Organizations");
+
+                    b.HasData(
+                        new
+                        {
+                            OrganizationId = 1,
+                            Description = "We are a small grassroots community of creators committed to bringing you high quality content for the current era",
+                            MainImageUrl = "https://www.geniuscr8.com/wp-content/uploads/2018/07/Genius-Concept-Sample-Logo-2.jpg",
+                            Name = "The Sample Org"
+                        },
+                        new
+                        {
+                            OrganizationId = 2,
+                            Description = "Pasting (and cutting, copying, etc.) is the name of the game for this paper-turned-digital media project",
+                            MainImageUrl = "https://turbologo.com/articles/wp-content/uploads/2018/03/prozrachniy-logo-1-1280x720.png",
+                            Name = "Makers of Ctrl+V"
+                        },
+                        new
+                        {
+                            OrganizationId = 3,
+                            Description = "We pride ourselves on transparency and keeping the public informed. Check out our West Seattle Connection blog",
+                            MainImageUrl = "https://cdn.vox-cdn.com/thumbor/2KfYhzovz49NNJ5aBw9agDxWoAo=/0x0:4000x3000/1200x800/filters:focal(1541x1365:2181x2005)/cdn.vox-cdn.com/uploads/chorus_image/image/65976577/shutterstock_1386088199.0.jpg",
+                            Name = "West Seattle Connection"
+                        });
                 });
 
             modelBuilder.Entity("ZineClient.Models.Post", b =>
@@ -220,6 +251,10 @@ namespace ZineClient.Migrations
                     b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Body");
+
+                    b.Property<byte[]>("MainImageFile");
+
+                    b.Property<string>("MainImageUrl");
 
                     b.Property<DateTime>("Published");
 
@@ -232,6 +267,17 @@ namespace ZineClient.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            PostId = 1,
+                            Body = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                            MainImageUrl = "https://media.npr.org/assets/bakertaylor/covers/t/the-new-me/9780143133605_custom-032ec0143cbe2b6613d2f46cb11228fc7fa84521-s300-c85.jpg",
+                            Published = new DateTime(2020, 4, 8, 15, 21, 8, 109, DateTimeKind.Local).AddTicks(59),
+                            Source = "https://www.npr.org/2019/03/19/704428358/the-new-me-is-meh-about-ambition-and-adulthood",
+                            Title = "Sample Post"
+                        });
                 });
 
             modelBuilder.Entity("ZineClient.Models.PostTag", b =>
@@ -291,6 +337,10 @@ namespace ZineClient.Migrations
 
                     b.Property<int>("IssueNumber");
 
+                    b.Property<byte[]>("MainImageFile");
+
+                    b.Property<string>("MainImageUrl");
+
                     b.Property<string>("Name");
 
                     b.Property<int>("OrganizationId");
@@ -302,6 +352,88 @@ namespace ZineClient.Migrations
                     b.HasIndex("OrganizationId");
 
                     b.ToTable("Zines");
+
+                    b.HasData(
+                        new
+                        {
+                            ZineId = 1,
+                            Description = "The zine of your dreams",
+                            IssueNumber = 1,
+                            MainImageUrl = "https://cms-assets.tutsplus.com/uploads/users/114/posts/32493/image/Mockup1.jpg",
+                            Name = "Ctrl+V",
+                            OrganizationId = 2,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 101, DateTimeKind.Local).AddTicks(7806)
+                        },
+                        new
+                        {
+                            ZineId = 2,
+                            Description = "The zine of your dreams, remastered",
+                            IssueNumber = 2,
+                            MainImageUrl = "https://texlibris.lib.utexas.edu/wp-content/uploads/2020/02/17-01898_3600-712x1024.jpg",
+                            Name = "Ctrl+V",
+                            OrganizationId = 2,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 107, DateTimeKind.Local).AddTicks(9875)
+                        },
+                        new
+                        {
+                            ZineId = 3,
+                            Description = "The zine of your dreams, trilogy edition",
+                            IssueNumber = 4,
+                            MainImageUrl = "https://images.squarespace-cdn.com/content/v1/5b69d5843917eed82e6834fc/1537917947123-QPP10RP1SC469FXQXP45/ke17ZwdGBToddI8pDm48kHTjdXaoHj2XBS1xQ9Jx_M57gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1Uei60Zpw-ZuEzVY2XSpngzHUNhdVwAOL_XMz32vi4iSsh9ymnU-gXScjHEMuNgenFw/The+Joy+003-Cover-spreads.jpg?format=2500w",
+                            Name = "Ctrl+V",
+                            OrganizationId = 2,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 107, DateTimeKind.Local).AddTicks(9923)
+                        },
+                        new
+                        {
+                            ZineId = 4,
+                            Description = "The zine for when the zine of your dreams already existed",
+                            IssueNumber = 1,
+                            MainImageUrl = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/380a5783-bac6-4184-9776-270b1e3b6a1d/dchzmx3-4b7e18cb-02cb-41ce-a192-ccb57c77e763.png/v1/fill/w_1024,h_1453,q_80,strp/shindeku_zine_cover____by_neon_nuisance_dchzmx3-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTQ1MyIsInBhdGgiOiJcL2ZcLzM4MGE1NzgzLWJhYzYtNDE4NC05Nzc2LTI3MGIxZTNiNmExZFwvZGNoem14My00YjdlMThjYi0wMmNiLTQxY2UtYTE5Mi1jY2I1N2M3N2U3NjMucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.UfjaWa0T3nF6rngtM2Fg0mW036EwLWIC4eZKmuEH_U4",
+                            Name = "Ctrl+C",
+                            OrganizationId = 2,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 107, DateTimeKind.Local).AddTicks(9932)
+                        },
+                        new
+                        {
+                            ZineId = 5,
+                            Description = "Asp.NET Core 101: A crash course",
+                            IssueNumber = 1,
+                            MainImageUrl = "https://dispozitivbooks.com/wp-content/uploads/2020/03/8.jpg",
+                            Name = "Devs Digest",
+                            OrganizationId = 1,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 107, DateTimeKind.Local).AddTicks(9940)
+                        },
+                        new
+                        {
+                            ZineId = 6,
+                            Description = "Our unfiltered opinions on group projects, late nights, and quarantine blues",
+                            IssueNumber = 2,
+                            MainImageUrl = "https://pbs.twimg.com/media/ETy7wcJWsAEplrI.jpg",
+                            Name = "Team Week in the making",
+                            OrganizationId = 1,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 107, DateTimeKind.Local).AddTicks(9947)
+                        },
+                        new
+                        {
+                            ZineId = 7,
+                            Description = "Though it's isolated from the rest of the city, West Seattle is an incredibly popular area, whether it's to live in or just to visit one of its hip neighborhoods.",
+                            IssueNumber = 1,
+                            MainImageUrl = "https://cdn.vox-cdn.com/thumbor/tyONoySTF3e4Qq64-86lCk9DdZA=/0x0:2500x1295/1200x900/filters:focal(751x398:1151x798)/cdn.vox-cdn.com/uploads/chorus_image/image/54721251/west_seattle_shutterstock.0.jpg",
+                            Name = "About West Seattle",
+                            OrganizationId = 3,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 107, DateTimeKind.Local).AddTicks(9954)
+                        },
+                        new
+                        {
+                            ZineId = 8,
+                            Description = "The renovated West Seattle Branch opened April 3, 2004. At this Carnegie library, tall ceilings contribute to a sense of openness. Rich detailing and use of wood throughout the interior add to the warm, historic feel.",
+                            IssueNumber = 2,
+                            MainImageUrl = "https://pauldorpat.com/wp-content/uploads/2011/12/branches-color-postcard-web1.jpg?w=500&h=309",
+                            Name = "West Seattle Library",
+                            OrganizationId = 3,
+                            PublicationDate = new DateTime(2020, 4, 8, 15, 21, 8, 107, DateTimeKind.Local).AddTicks(9963)
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -359,6 +491,13 @@ namespace ZineClient.Migrations
                         .WithMany("ApplicationUsers")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ZineClient.Models.Organization", b =>
+                {
+                    b.HasOne("ZineClient.Models.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("ZineClient.Models.Post", b =>

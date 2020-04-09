@@ -65,7 +65,7 @@ namespace ZineClient.Controllers
       //   Random random = new Random();
       //   string[] links = { "https://www.slashgear.com/wp-content/uploads/2019/12/frozen_moonrise_main-1280x720.jpg"; "https://i.imgur.com/RRUe0Mo.png"; "https://scipy-lectures.org/_images/face.png" }
       // 
-      ViewBag.Random = random.Next(0, links.Length);
+      // ViewBag.Random = random.Next(0, links.Length);
       return View(thisZine);
     }
 

@@ -13,9 +13,12 @@
 
 <p>Body</p>
 
-<div id="editor"><p>test</p></div>
+<!-- Create the editor container -->
+<div id="editor">
+  <p><b>this is A </b>test</p>
+</div>
 
-<div id="non-quill-div"></div>
+<div id="justHtml"></div>
 
 <div id="model-body">@Model.Body</div>
 
@@ -36,12 +39,12 @@ else
     @using (Html.BeginForm("DeleteZine", "Posts"))
     {
       @Html.Hidden("joinId", @join.PostZineId)
-      <input type="submit" value="Delete Zine?"/>
+      <input type="submit" value="Remove post from this zine?"/>
     }
   }
 }
 
-<img src="@Model.Source" class="img-fluid">
+<img src="@Model.MainImageUrl" class="img-fluid">
 
 @* <div>
   <form method="post">
@@ -85,12 +88,21 @@ else
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
-  var bodyContent = document.getElementById('#non-quill-div').innerText;
-  var quill = new Quill('#editor', {
-    theme: 'snow'
-  });
-  document.getElementById('#non-quill-div').innerHTML = bodyContent;
-  quill.setText("hello devs");
+
+  var stringBody = document.getElementById('model-body').innerHTML;
+  console.log(stringBody);
+  var parser = new DOMParser();
+  var htmlDoc = parser.parseFromString(stringBody, 'text/html');
+  //document.onload = function(){
+    var justHtmlContent = document.getElementById('justHtml');
+    justHtmlContent.innerHTML += htmlDoc;
+  //};
+
+
+  //document.getElementsById('justHtml').innerHTML = @Model.Body;
 
   
+  //var quill = new Quill('#editor', options);
+ 
+  //console.log(@Model.Body);
 </script>

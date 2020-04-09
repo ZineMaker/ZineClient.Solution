@@ -33,10 +33,10 @@
 
 ## What's next?
 
-- [ ] After basic CRUD is implemented, refine the relationships of many-to-many (maybe?)
-  - [ ] We still need to be able to add users to an organization
-- [ ] Images:
-  - [ ] need to refine edit feature for zines, and the create/edit in Posts and Organizations (and maybe users??)
+- [x] After basic CRUD is implemented, refine the relationships of many-to-many (maybe?)
+  - [x] We still need to be able to add users to an organization
+- [ ] **Images:**
+  - [ ] need to refine 'edit' form for zines - all fields match the ;create', and the create/edit in Posts and Organizations (and maybe users??)
   - [ ] need a default image if no image is added
 
 :---------------------
@@ -53,7 +53,7 @@
 - [ ] Authentication and roles: deep dive
   - [ ] Owners and co-creators of zines, organizations, etc
   - [ ] Only the creator of an organization or post should be able to delete it
-- [ ] Seed the database for display purposes
+- [x] **Seed the database for display purposes**
 - [ ] Uploading pictures to the database
 - [ ] Work on how to format a finished Zine - css, html, constraints...
   - [ ] work with pictures and articles

@@ -3,9 +3,9 @@
     ViewData["Title"] = "@Model.Name";
 }
 
-@* <body style="background-image: url(@Model.MainImageUrl); width:800px; height:600px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; background-color: lightgrey; background-blend-mode: screen;"> *@
-<body>
-  <div class=jumbotron>
+@* <body style="background-image: url(@Model.MainImageUrl); width:800px; height:600px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; background-color: black; background-blend-mode: screen"> *@
+<body style="background-color: rgb(30, 30, 30); color: white">
+  <div class=jumbotron style="color: black">
     <h1>@Html.DisplayFor(model => model.IssueNumber). @Html.DisplayFor(model => model.Name)</h1>
     <p>by @ViewBag.Name</p>
     <p>@Model.PublicationDate.ToString("MM/dd/yyyy")</p>
@@ -13,7 +13,22 @@
     
     <p>@Html.DisplayFor(model => model.Description)</p>
 
-    
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </button>
+      </h5>
+    </div>
+    <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body" style="color: black">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div> 
 
   @if (@Model.Posts.Count == 0)
   {
@@ -26,18 +41,19 @@
     { 
       <div class="post">
         <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
-        @join.Post.Published<
+        @join.Post.Published
         <p>@join.Post.Body</p>
-        @if (@join.Post.Source != null)
+        @if (@join.Post.MainImageUrl != null)
         {
-        <img src="@join.Post.Source" class="img-fluid img-thumbnail">
+        <img src="@join.Post.MainImageUrl" class="img-fluid img-thumbnail">
         }
         else
         {
         <img class="img-fluid" src="@ViewBag.Random">
         }
         @if (User.Identity.IsAuthenticated)
-        {
+        { 
+          <br>
           <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
         }
       </div>

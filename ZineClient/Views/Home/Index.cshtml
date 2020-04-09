@@ -1,23 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<body style="background-color:rgb(30, 30, 30); color: white">
+    <div class="text-center">
+        <h1 class="display-4">Zine Maker</h1>
+        <p>Connect with creative communities</p>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Zine Maker</h1>
-    <p>Connect with creative communities</p>
-</div>
-
-@* <div class="zine-grid-display"> *@
-<div class="gridtest">
-    @foreach (Zine zine in ViewBag.TopFour)
-    {
-        <div class="zine-thumbnail">
-            <img class="zine-cover" src="@zine.MainImageUrl">
-            <div class="overlay">
-                <div class="zine-details-link">
-                    @Html.ActionLink($"{zine.Name}", "Details", "Zines", new { id = zine.ZineId })
-                </div>
-            </div>            
-        </div>
-    }
-</div>
+    @* <div class="zine-grid-display"> *@
+    <div class="gridtest">
+        @foreach (Zine zine in ViewBag.TopFour)
+        {
+            <div class="zine-thumbnail">
+                <img class="zine-cover" src="@zine.MainImageUrl">
+                <div class="overlay">
+                    <div class="zine-details-link">
+                        @Html.ActionLink($"{zine.Name}", "Details", "Zines", new { id = zine.ZineId })
+                    </div>
+                </div>            
+            </div>
+        }
+    </div>
+</body>

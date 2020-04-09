@@ -29,6 +29,11 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label for="MainImageUrl">Image Url</label>
+      <input class="form-control" asp-for="MainImageUrl">
+    </div>
+
     @* <div class="form-group">
       <label for="Body">Body</label>
       <textarea rows="8" class="form-control" asp-for="Body"></textarea>
@@ -42,20 +47,32 @@
   </form>
 </div>
 
+<div id="justHtml"></div>
+
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
   var quill = new Quill('#editor-container', {
     theme: 'snow'
   });
   var form = document.querySelector('form');
+
+  var justHtmlContent = document.getElementById('justHtml');
+
+  quill.on('text-change', function() {
+    var justHtml = quill.root.innerHTML;
+    justHtmlContent.innerHTML = justHtml;
+  });
+
   function getBody() {
     var body = document.querySelector('input[name=Body]');
     //body.value = quill.getContents();
     //body.value = JSON.stringify(quill.getContents());
     //body.value = document.getElementById('editor-container').innerText;
-    body.value = document.getElementById('editor-container').innerHtml;
+    //body.value = document.getElementById('editor-container').innerHtml;
     //body.value = quill.root.innerHtml;
     //console.log(quill.getContents());
+
+    body.value = quill.root.innerHTML;
     form.submit();
   };
 </script>
