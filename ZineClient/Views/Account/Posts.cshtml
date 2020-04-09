@@ -14,12 +14,15 @@ else
   {
     <h4 asp-controller="Posts" asp-action="Details" asp-route-id="@post.PostId">@post.Title</h4>
     <p>@post.Published</p>
-    <div id="post-body" class="post-body">@post.Body</div>
+    @if (post.Body != null)
+        {
+          <div id="body-@post.PostId" class="post-body">@post.Body</div>
+          <script>
+            var bodyDiv = document.getElementById('body-@post.PostId');
+            console.log(bodyDiv);
+            bodyDiv.innerHTML = bodyDiv.innerText;
+          </script>
+        }
     <img class="img-fluid" src="@post.Source">
   }
 }
-
-<script>
-  var bodyDiv = document.getElementById('post-body');
-  bodyDiv.innerHTML = bodyDiv.innerText;
-</script>
