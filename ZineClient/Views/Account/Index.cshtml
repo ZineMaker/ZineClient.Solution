@@ -1,4 +1,5 @@
 @using System.Security.Claims;
+@model ZineClient.Models.ApplicationUser
 
 @{
   ViewData["Title"] = "Account Home";
@@ -8,6 +9,7 @@
     <h1>@ViewData["Title"]</h1>
   </div>
 
+
 @if (User.Identity.IsAuthenticated)
 {
   <div class="sub-heading text-center">
@@ -16,44 +18,10 @@
 
   <div class="profile-section">
     <h3>My Profile</h3>
-    <h4 class="">
-      Name:
-    </h4>
-    <h4 class="">
-    </h4>
-    <h4 class="">
-    </h4>
-  </div>
-  <div class="profile-section">
-    <h3>Links</h3>
-    <h4 class="">
-      <a class="" asp-action="Organizations" asp-controller="Account">My organizations</a>
-    </h4>
-    <h4 class="">
-        <a class="" asp-action="Zines" asp-controller="Account">My zines</a>
-    </h4>
-    <h4 class="">
-        <a class="" asp-action="Posts" asp-controller="Account">My posts</a>
-    </h4>
+    <h4>Name: @Model.FirstName @Model.LastName</h4>
+      <h4>E-mail: @Model.UserName</h4>
   </div>
 
-  @* @if (@Model.Posts.Count == 0)
-  {
-    <p>You don't have posts yet</p>
-  }
-  else
-  {
-    <p></p>
-    foreach(var join in Model.Posts)
-    {
-      <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
-         @if (Model.Organization.Owner == User.Identity)
-        { 
-          <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
-        }
-    }
-  } *@
-  
   <div class="text-center">
     <div class="btn-group">
       <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">New organization</a>

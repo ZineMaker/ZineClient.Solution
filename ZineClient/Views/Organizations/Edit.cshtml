@@ -1,6 +1,12 @@
 @model ZineClient.Models.Organization
 
-<h1>Edit Organization</h1>
+@{
+  ViewData["Title"] = "Edit " + @Model.Name;
+}
+
+  <div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+  </div>
 
 <div class="registration-form">
   <form asp-controller="Organizations" asp-action="Edit" method="post">

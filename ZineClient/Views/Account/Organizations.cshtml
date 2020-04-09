@@ -18,13 +18,16 @@ else
     @foreach (var join in Model.Organizations)
     {
       <h4 asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</h4>
-      <img class="img-fluid" src="@join.Organization.MainImageUrl">
+      <img style="width:250px" class="img-fluid" src="@join.Organization.MainImageUrl">
     }
   </ul>
 }
 
-  <div class="text-center">
-    <div class="btn-group">
-       <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">New organization</a>
-    </div>
+@if (User.Identity.IsAuthenticated)
+{
+<div class="text-center">
+  <div class="btn-group">
+      <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">New organization</a>
   </div>
+</div>
+}

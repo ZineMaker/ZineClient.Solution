@@ -1,5 +1,12 @@
 @model ZineClient.Models.Post
-<h1>Edit Post</h1>
+
+@{
+  ViewData["Title"] = "Edit " + @Model.Title;
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+</div>
 
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
@@ -26,7 +33,7 @@
       <label for="Body">Body</label>
       <input name="Body" type="hidden" asp-for="Body" class="form-control">
       <div id="editor-container">
-        <p>Edit a post...</p>
+        @Model.Body
       </div>
     </div>
 
@@ -34,6 +41,7 @@
       <label for="MainImageUrl">Image Url</label>
       <input class="form-control" asp-for="MainImageUrl">
     </div>
+
     <br>
     <br>   
     <input id="submit-btn" onclick="getBody()" class="btn btn-light" type="submit" value="Edit">
@@ -42,6 +50,9 @@
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
+  var oldBody = document.getElementById('editor-container');
+  oldBody.innerHTML = oldBody.innerText;
+
   var quill = new Quill('#editor-container', {
     theme: 'snow'
   });

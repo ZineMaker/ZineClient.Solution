@@ -1,6 +1,12 @@
 @model ZineClient.Models.Zine
-<h1>Edit Zine</h1>
 
+@{
+  ViewData["Title"] = "Edit " + @Model.Name;
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+</div>
 
 <div class="registration-form">
   <form asp-controller="Zines" asp-action="Edit" method="post">

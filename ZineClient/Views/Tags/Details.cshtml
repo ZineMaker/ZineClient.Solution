@@ -1,16 +1,21 @@
 @model ZineClient.Models.Tag
 
 @{
-    ViewData["Title"] = "@Model.Name";
+  ViewData["Title"] = "#" + @Model.Name;
 }
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+</div>
+
 
   @if (@Model.Posts.Count == 0)
   {
     <p>This tag doesn't belong to any post yet</p>
   }
   else
-  {
-    <p></p>
+  { 
+    <h2>Posts related to this tag</h2>
     foreach(var join in Model.Posts)
     { 
       <div class="post">

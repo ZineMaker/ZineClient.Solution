@@ -1,6 +1,12 @@
 @model RegisterViewModel
 
-<h1>Sign In</h1>
+@{
+  ViewData["Title"] = "Sign In";
+}
+
+  <div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+  </div>}
 
 <div class="registration-form">
   <form asp-controller="Account" asp-action="Login" method="post">

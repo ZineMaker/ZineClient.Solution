@@ -1,8 +1,13 @@
 @model ZineClient.Models.Tag
+@{
+  ViewData["Title"] = "Add Tag";
+}
 
-<div class="jumbotron">
-  <h1>Add Tag</h1>
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2>Help us curate posts</h2>
 </div>
+
 
 <div class="registration-form">
   <form asp-controller="Tags" asp-action="Create" method="post">

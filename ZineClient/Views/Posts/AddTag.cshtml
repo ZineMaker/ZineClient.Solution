@@ -1,9 +1,13 @@
 @model ZineClient.Models.Post
 
-<div class="jumbotron">
-  <h2> Add tag to @Html.DisplayFor(model => model.Title)</h2>
-</div>
+@{
+  ViewData["Title"] = "Add a Tag";
+}
 
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2>Power your creation with metadata</h2>
+</div>
 
 <div class="registration-form">
   <form asp-controller="Posts" asp-action="AddTag" method="post">

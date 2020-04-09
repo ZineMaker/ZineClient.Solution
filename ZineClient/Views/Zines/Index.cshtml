@@ -1,5 +1,7 @@
+@model List<ZineClient.Models.Zine>;
+
 @{
-    ViewData["Title"] = "Zines";
+    ViewData["Title"] = "Zines Index";
 }
 
 <div class="text-center">
@@ -7,34 +9,25 @@
     <h2>View zines from everyone</h2>
 </div>
 
-@model List<ZineClient.Models.Zine>;
-
-@* <ul>
-  @foreach(Zine zine in Model)
-  {
-    <h4></h4>
-  }
-</ul> *@
-
-@* <div class="zine-grid-display"> *@
+<br>
 <div class="gridtest">
-    @foreach (Zine zine in Model)
-    {
-        <div class="zine-thumbnail">
-            @if (@zine.MainImageUrl != null)
-            {
-                <img class="zine-cover" src="@zine.MainImageUrl">
-            }
-            else
-            {
-                <img class="zine-cover" src="https://www.rcsdk8.org/sites/main/files/main-images/camera_lense_0.jpeg">
-            }
-            <div class="overlay">
-                <div class="zine-details-link">
-                    @Html.ActionLink($"{zine.Name}", "Details", new { id = zine.ZineId })
-                </div>
-            </div>            
+  @foreach (Zine zine in Model)
+  {
+    <div class="zine-thumbnail">
+      @if (@zine.MainImageUrl != null)
+      {
+        <img class="zine-cover" src="@zine.MainImageUrl">
+      }
+      else
+      {
+        <img class="zine-cover" src="https://www.rcsdk8.org/sites/main/files/main-images/camera_lense_0.jpeg">
+      }
+      <div class="overlay">
+        <div class="zine-details-link">
+          <h4><a asp-controller="Zines" asp-action="Details" asp-route-id="@zine.ZineId">@zine.Name</a></h4>
         </div>
-    }
+      </div>            
+    </div>
+  }
 </div>
 

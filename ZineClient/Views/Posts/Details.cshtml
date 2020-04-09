@@ -4,7 +4,10 @@
 
 @model ZineClient.Models.Post
 
-<h2 class="post-title">@Model.Title</h2>
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+</div>
+
 <br>
 @if (Model.ApplicationUser != null)
 {

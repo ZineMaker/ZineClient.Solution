@@ -83,7 +83,7 @@ namespace ZineClient.Controllers
     {
       _db.Entry(post).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index", "Account");
+      return RedirectToAction("Details", "Posts", new { id = post.PostId });
     }
     // public ActionResult CheckDelete(int id)
     // {
@@ -179,6 +179,6 @@ namespace ZineClient.Controllers
       }
       _db.SaveChanges();
       return RedirectToAction("Details", "Posts", new { id = post.PostId });
-    }      
+    }
   }
 }

@@ -1,6 +1,13 @@
 @model ZineClient.Models.Organization
 
-<h1>Add Organization</h1>
+@{
+  ViewData["Title"] = "Create an Organization";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2>Get started with a new community</h2>
+</div>
 
 <div class="registration-form">
   <form asp-controller="Organizations" asp-action="Create" method="post">

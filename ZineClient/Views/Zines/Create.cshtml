@@ -1,7 +1,12 @@
 @model ZineClient.Models.Zine
 
-<div class="jumbotron">
-  <h1>Add Zine</h1>
+@{
+  ViewData["Title"] = "New Zine";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2>Create your next issue</h2>
 </div>
 
 <div class="registration-form">

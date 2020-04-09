@@ -10,13 +10,21 @@
 </div>
 
 <div class="tag-index">
+  <h4>
   @foreach (Tag tag in Model)
   {
     @* <a asp-action="Details" asp-route-id="tag.TagId">#@tag.Name</a> *@
-    <h4>@Html.ActionLink($"#{tag.Name}", "Details", new { id = tag.TagId })</h4>
+    @Html.ActionLink($"#{tag.Name}", "Details", new { id = tag.TagId })
+    <span> </span>
   }
+  </h4>
 </div>
 
-<div class="btn-menu">
-  <a class="btn btn-light" asp-action="Create">Add tag</a>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+  <div class="text-center">
+    <div class="btn-group">
+        <a class="btn btn-light" asp-action="Create">Add tag</a>
+    </div>
+  </div>
+}

@@ -1,20 +1,23 @@
 @model ZineClient.Models.Tag
+@{
+  ViewData["Title"] = "Edit #" + @Model.Name;
+}
 
-<div class="jumbotron">
-  <h1>Add Tag</h1>
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
 </div>
 
 <div class="registration-form">
-  <form asp-controller="Tags" asp-action="Create" method="post">
+  <form asp-controller="Tags" asp-action="Edit" method="post">
 
-    @* <input type="hidden" asp-for="@Model.OrganizationId" value="@ViewBag.OrganizationId"> *@
+    <input type="hidden" value="@Model.TagId"  asp-for="TagId">
 
     <div class="form-group">
       <label for="Name">Name</label>
       <input class="form-control" asp-for="Name">
     </div>
 
-    <input class="btn btn-light" type="submit" value="Create">
+    <input class="btn btn-light" type="submit" value="Edit">
   </form>
 </div>
 

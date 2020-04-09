@@ -1,26 +1,43 @@
 @model List<ZineClient.Models.Organization>;
 
-<div class="jumbotron">
-  <h1>Organizations</h1>
-</div>
+@{
+  ViewData["Title"] = "Organizations";
+}
 
+  <div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <h2>Explore organizations</h2>
+  </div>
 
 @foreach(Organization organization in Model)
 {
-  <h4>@Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</h4>
-  @if (@organization.MainImageUrl != null)
-  {
-    <img class="img-fluid" src="@organization.MainImageUrl">
-  }
-  else
-  {
-    <img class="img-fluid" src="  https://www.slashfilm.com/wp/wp-content/images/community-e1573493023671.jpg">
-  }
+  <hr>
+  <div class="index-preview">
+    <div>
+      <div class="preview-image">
+        @if (@organization.MainImageUrl != null)
+        {
+          <img class="img-fluid" src="@organization.MainImageUrl">
+        }
+        else
+        {
+          <img style="width:200px" src="https://thednetworks.com/wp-content/uploads/2012/01/picture_not_available_400-300.png">
+        }
+      </div>
+
+      <h2>@Html.ActionLink($"{organization.Name}", "Details", new { id = organization.OrganizationId })</h2>
+
+      <p>@organization.Description</p>
+    </div>
+  </div>
 }
 
 @if (User.Identity.IsAuthenticated)
 {
-<div class="btn-menu">
-  <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">Add organization</a>
-</div>
+  <div class="text-center">
+    <div class="btn-group">
+        <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">Add organization</a>
+    </div>
+  </div>
 }
+

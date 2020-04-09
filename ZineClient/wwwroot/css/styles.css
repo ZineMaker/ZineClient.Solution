@@ -1,6 +1,6 @@
 img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
+  /* -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); */
   max-width: 400px;
 }
 body {
@@ -54,6 +54,16 @@ p,
 .post-body {
   font-family: "Source Serif Pro", serif;
   font-size: 21px;
+  font-weight: 400;
+  line-height: 1.58;
+  letter-spacing: -0.004em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.post-preview,
+.post-preview p {
+  font-family: "Source Serif Pro", serif;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.58;
   letter-spacing: -0.004em;
@@ -141,16 +151,17 @@ a:-webkit-any-link {
   color: black;
   font-size: 16px;
   padding: 16px 32px;
+  line-height: 1;
 }
 
-.zine-details-link a {
+/* .zine-details-link a {
   text-decoration: none;
   color: #fff;
-}
+} */
 
-.zine-details-link a:hover {
+/* .zine-details-link a:hover {
   color: rgb(131, 46, 46);
-}
+} */
 
 .zine-thumbnail:hover .zine-cover {
   opacity: 0.2;
@@ -161,7 +172,7 @@ a:-webkit-any-link {
 }
 
 .gridtest {
-  line-height: 0;
+  line-height: 1.5;
 
   -webkit-column-count: 4;
   -webkit-column-gap: 0px;
@@ -210,6 +221,32 @@ a:-webkit-any-link {
     -webkit-column-count: 1;
     column-count: 1;
   }
+}
+
+.post-index-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  overflow: hidden;
+}
+
+.index-preview {
+  height: 240px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.index-preview2 {
+  height: 240px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 200px;
+  float: left;
+  margin-right: 20px;
+  /* margin-bottom: 1px; */
 }
 
 /* a normal, unvisited link */
