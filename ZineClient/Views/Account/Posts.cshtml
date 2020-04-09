@@ -16,7 +16,8 @@ else
 {
   @foreach (var post in Model.Posts)
   {
-    <h4 asp-controller="Posts" asp-action="Details" asp-route-id="@post.PostId">@post.Title</h4>
+    @* <h4 asp-controller="Posts" asp-action="Details" asp-route-id="@post.PostId">@post.Title</h4> *@
+    <h4>@Html.ActionLink($"{post.Title}", "Details", "Posts", new { id = post.PostId })</h4>
     <p>@post.Published</p>
     @if (post.Body != null)
         {
@@ -27,6 +28,10 @@ else
             bodyDiv.innerHTML = bodyDiv.innerText;
           </script>
         }
-    <img class="img-fluid" src="@post.Source">
+    <img class="img-fluid" src="@post.MainImageUrl">
   }
 }
+
+<div class="btn-menu">
+  <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
+</div>

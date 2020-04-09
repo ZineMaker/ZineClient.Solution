@@ -1,9 +1,14 @@
 @model ZineClient.Models.Post
 <h1>Edit Post</h1>
 
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
-<div class="registration-form">
-  <form asp-controller="Posts" asp-action="Edit" method="post">
+<div class="jumbotron">
+  <h1>Edit Post</h1>
+</div>
+
+<div class="new-post-form">
+  <form id="form" asp-controller="Posts" asp-action="Edit" method="post">
 
     <input type="hidden" value="@Model.PostId"  asp-for="PostId" >
 
@@ -13,20 +18,37 @@
     </div>
 
     <div class="form-group">
-      <label for="Source">Source</label>
+      <label for="Source">Content source</label>
       <input class="form-control" asp-for="Source">
     </div>
 
     <div class="form-group">
       <label for="Body">Body</label>
-      <textarea rows="8" class="form-control" asp-for="Body"></textarea>
+      <input name="Body" type="hidden" asp-for="Body" class="form-control">
+      <div id="editor-container">
+        <p>Edit a post...</p>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="MainImageUrl">Image Url</label>
       <input class="form-control" asp-for="MainImageUrl">
-    </div>    
-
-    <input class="btn btn-light" type="submit" value="Edit">
+    </div>
+    <br>
+    <br>   
+    <input id="submit-btn" onclick="getBody()" class="btn btn-light" type="submit" value="Edit">
   </form>
 </div>
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+  var quill = new Quill('#editor-container', {
+    theme: 'snow'
+  });
+  var form = document.querySelector('form');
+  function getBody() {
+    var body = document.querySelector('input[name=Body]');
+    body.value = quill.root.innerHTML;
+    form.submit();
+  };
+</script>
