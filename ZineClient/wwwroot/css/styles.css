@@ -16,6 +16,12 @@ h1 {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+h2 {
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 400;
+}
 p,
 .post-body {
   font-family: "Source Serif Pro", serif;
@@ -180,10 +186,12 @@ strong {
 
 /* a normal, unvisited link */
 a:link {
-  color: #1b80b7;
-  /* color: white; */
-  transition: all 0.2s linear;
   /* color: gray; */
+  /* color: #1b80b7; */
+  /* color: white; */
+  /* color: rgba(0, 0, 0, 0.54); */
+  transition: all 0.2s linear;
+
   text-decoration: none;
 }
 /* a link the user has visited */
