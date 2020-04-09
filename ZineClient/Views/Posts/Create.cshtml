@@ -1,13 +1,15 @@
 @using System
 @model ZineClient.Models.Post
 
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@{
+    ViewData["Title"] = "New Post";
+}
 
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <h1>New Post</h1>
 
-@* <div class="registration-form"> *@
-<div>
+<div class="new-post-form">
   <form id="form" asp-controller="Posts" asp-action="Create" method="post">
 
     <div class="form-group">
@@ -20,12 +22,11 @@
       <input class="form-control" asp-for="Source">
     </div>
 
-    <!-- Create the editor container -->
     <div class="form-group">
       <label for="Body">Body</label>
       <input name="Body" type="hidden" asp-for="Body" class="form-control">
       <div id="editor-container">
-        <p>A robot who has developed sentience, and is the only robot of his kind shown to be still functioning on Earth.</p>
+        <p>Compose a post...</p>
       </div>
     </div>
 
@@ -33,11 +34,6 @@
       <label for="MainImageUrl">Image Url</label>
       <input class="form-control" asp-for="MainImageUrl">
     </div>
-
-    @* <div class="form-group">
-      <label for="Body">Body</label>
-      <textarea rows="8" class="form-control" asp-for="Body"></textarea>
-    </div> *@
 
     @Html.Label("Select zine")
     @Html.DropDownList("ZineId")
@@ -47,31 +43,14 @@
   </form>
 </div>
 
-<div id="justHtml"></div>
-
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
   var quill = new Quill('#editor-container', {
     theme: 'snow'
   });
   var form = document.querySelector('form');
-
-  var justHtmlContent = document.getElementById('justHtml');
-
-  quill.on('text-change', function() {
-    var justHtml = quill.root.innerHTML;
-    justHtmlContent.innerHTML = justHtml;
-  });
-
   function getBody() {
     var body = document.querySelector('input[name=Body]');
-    //body.value = quill.getContents();
-    //body.value = JSON.stringify(quill.getContents());
-    //body.value = document.getElementById('editor-container').innerText;
-    //body.value = document.getElementById('editor-container').innerHtml;
-    //body.value = quill.root.innerHtml;
-    //console.log(quill.getContents());
-
     body.value = quill.root.innerHTML;
     form.submit();
   };
