@@ -4,6 +4,7 @@
 
 @model ZineClient.Models.Post
 
+
 <div class="text-center">
   <h1>@ViewData["Title"]</h1>
 </div>
@@ -21,28 +22,6 @@ else
 
 </div>
 <div id="model-body" class="post-body">@Model.Body</div>
-
-
-@if (@Model.Zines.Count == 0)
-{
-  <p>This post doesn't belong to any of zines yet</p>
-}
-else
-{
-  <h4>Zines where this post was published:</h4>
-  int x = 0;
-  foreach(var join in Model.Zines)
-  { 
-    x++;
-    <h4>@x. @join.Zine.Name </h4>
-    @using (Html.BeginForm("DeleteZine", "Posts"))
-    {
-      @Html.Hidden("joinId", @join.PostZineId)
-      <input type="submit" value="Remove post from this zine?"/>
-    }
-  }
-}
-
 <img src="@Model.MainImageUrl" class="img-fluid">
 
 @if (@Model.Tags.Count == 0)
@@ -54,24 +33,54 @@ else
   <p></p>
   foreach(var join in Model.Tags)
   {
-    <li>@join.Tag.Name 
-      @* @if (Model.Organization.Owner == User.Identity)
-      { *@
-        <a asp-controller="Tags" asp-action="Delete" asp-route-id="@join.Tag.TagId">Delete tag?</a>
-      @* } *@
-    </li>
+    <a asp-controller="Tags" asp-action="Details" asp-route-id="@join.TagId"><span>#</span>@join.Tag.Name</a><span> </span>
+    @if (User.Identity.IsAuthenticated)
+    { 
+      <a class="btn btn-light btn-sm" asp-controller="Tags" asp-action="Delete" asp-route-id="@join.Tag.TagId">Delete tag?</a>
+    }
   }
 }
 
-@* @if (Model.Organization.Owner == User.Identity)
-{ *@
-<div class="btn-menu">
+<div class=content></div>
+
+@if (@Model.Zines.Count == 0)
+{
+  <p>This post doesn't belong to any of zines yet</p>
+}
+else
+{
+  <h5>Zines where this post was published:</h5>
+  int x = 0;
+  foreach(var join in Model.Zines)
+  { 
+    x++;
+    <h5>@join.Zine.Name </h5>
+    @if (User.Identity.IsAuthenticated)
+    { 
+      @using (Html.BeginForm("DeleteZine", "Posts"))
+      {
+        @Html.Hidden("joinId", @join.PostZineId)
+        <input class="btn btn-light btn-sm" type="submit" value="Remove post from this zine?"/>
+      }
+    }
+  }
+}
+
+<div class=content></div>
+
+
+
+@if (User.Identity.IsAuthenticated)
+{
+<div class="text-center">
+  <div class="btn-group">
   <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.PostId">Edit post</a>
   <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.PostId">Delete post</a>
   <a class="btn btn-light" asp-action="AddZine" asp-route-id="@Model.PostId">Add zine</a>
   <a class="btn btn-light" asp-action="AddTag" asp-route-id="@Model.PostId">Add tag</a>
+  </div>
 </div>
-@* } *@
+}
 
 <script>
   var bodyDiv = document.getElementById('model-body');

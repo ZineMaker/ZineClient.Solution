@@ -24,9 +24,10 @@ namespace ZineClient.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
-      List<Post> model = _db.Posts.ToList();
+      List<Post> model = _db.Posts.OrderBy(p => p.Published).ToList();
       return View(model);
     }
 

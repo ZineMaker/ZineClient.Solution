@@ -43,8 +43,10 @@
 
   @if (User.Identity.IsAuthenticated)
   {
-  <div class="btn-menu">
-    <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.TagId">Edit tag</a>
-    <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.TagId">Delete tag</a>
+  <div class="text-center">
+    <div class="btn-group">
+      <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.TagId">Edit tag</a>
+      <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.TagId">Delete tag</a>
+    </div>
   </div>
   }

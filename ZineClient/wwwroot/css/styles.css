@@ -6,6 +6,7 @@ img {
 body {
   color: rgba(0, 0, 0, 0.84);
   font-family: "Lato", sans-serif;
+  height: 100%;
   /* background-color: #f6f5f8; */
 }
 .container-body {
@@ -131,7 +132,7 @@ a:-webkit-any-link {
   /* height: auto; */
   transition: 0.5s ease;
   /* backface-visibility: hidden; */
-  background-color: black;
+  background-color: white;
   object-fit: cover;
 }
 
@@ -153,15 +154,6 @@ a:-webkit-any-link {
   padding: 16px 32px;
   line-height: 1;
 }
-
-/* .zine-details-link a {
-  text-decoration: none;
-  color: #fff;
-} */
-
-/* .zine-details-link a:hover {
-  color: rgb(131, 46, 46);
-} */
 
 .zine-thumbnail:hover .zine-cover {
   opacity: 0.2;
@@ -249,34 +241,64 @@ a:-webkit-any-link {
   /* margin-bottom: 1px; */
 }
 
-/* a normal, unvisited link */
 .btn-light,
 a:link {
-  /* color: gray; */
-  /* color: #1b80b7; */
-  /* color: white; */
-  /* color: rgba(0, 0, 0, 0.54); */
   transition: all 0.2s linear;
 
   text-decoration: none;
 }
-/* a link the user has visited */
 a:visited {
-  /* color: darkcyan; */
   text-decoration: none;
 }
-/* a link when the user mouses over it */
 a:hover {
   color: rgba(0, 0, 0, 0.84);
-  /* color: white; */
-  /* text-decoration: none; */
-  /* font-weight: 200; */
 }
-/* a link the moment it is clicked */
 a:active {
   text-decoration: none;
 }
 
 img:before {
   content: "We're sorry, this image can't be retrieved";
+}
+.content {
+  margin-bottom: 50px;
+}
+
+/* The hero image */
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-color: blueviolet;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://cms-assets.tutsplus.com/uploads/users/114/posts/32493/image/Mockup1.jpg");
+  /* Set a specific height */
+  height: 300px;
+  width: 100%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  top: 600;
+  left: 0;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0.9;
+  overflow: hidden;
+}
+.hero-text p {
+  margin-top: -0.5em;
+}
+@media (max-width: 960px) {
+  .hero-text p {
+    font-size: 16px;
+  }
 }

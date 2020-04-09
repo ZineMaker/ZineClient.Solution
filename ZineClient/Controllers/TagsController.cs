@@ -23,6 +23,7 @@ namespace ZineClient.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
       List<Tag> model = _db.Tags.ToList();
@@ -50,6 +51,8 @@ namespace ZineClient.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisTag = _db.Tags
@@ -100,6 +103,6 @@ namespace ZineClient.Controllers
       _db.SaveChanges();
 
       return RedirectToAction("Details", "Posts", new { id = thisPostId });
-    }    
+    }
   }
 }

@@ -8,21 +8,6 @@
   <h1>@ViewData["Title"]</h1>
 </div>
 
-@if (Model.Organizations.Count == 0)
-{
-  <p>You have not joined any organizations yet.</p>
-}
-else
-{
-  <ul>
-    @foreach (var join in Model.Organizations)
-    {
-      <h4 asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</h4>
-      <img style="width:250px" class="img-fluid" src="@join.Organization.MainImageUrl">
-    }
-  </ul>
-}
-
 @if (User.Identity.IsAuthenticated)
 {
 <div class="text-center">
@@ -31,3 +16,23 @@ else
   </div>
 </div>
 }
+
+@if (Model.Organizations.Count == 0)
+{
+  <p>You have not joined any organizations yet.</p>
+}
+else
+{
+
+  <ul>
+    @foreach (var join in Model.Organizations)
+    { 
+      <br>
+      <hr>
+      <br>
+      <h4 asp-controller="Organizations" asp-action="Details" asp-route-id="@join.OrganizationId">@join.Organization.Name</h4>
+      <img style="width:250px" class="img-fluid" src="@join.Organization.MainImageUrl">
+    }
+  </ul>
+}
+
