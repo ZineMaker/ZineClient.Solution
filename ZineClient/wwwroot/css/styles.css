@@ -3,10 +3,20 @@ img {
   filter: grayscale(100%);
   max-width: 400px;
 }
-
 body {
   color: rgba(0, 0, 0, 0.84);
   font-family: "Lato", sans-serif;
+  /* background-color: #f6f5f8; */
+}
+.container-body {
+  padding-right: 84px;
+  padding-left: 84px;
+}
+@media (max-width: 600px) {
+  .container-body {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
 }
 h1 {
   font-family: "Source Serif Pro", serif;
@@ -21,6 +31,24 @@ h2 {
   line-height: 32px;
   font-size: 24px;
   font-weight: 400;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+h3 {
+  font-family: "Source Serif Pro", serif;
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 400;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+h4 {
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 24px;
+  font-size: 21px;
+  letter-spacing: -0.32px;
+  font-weight: 600;
 }
 p,
 .post-body {
@@ -32,18 +60,18 @@ p,
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 strong {
   font-weight: 700;
+}
+.btn-light,
+a:-webkit-any-link {
+  color: rgba(0, 0, 0, 0.54);
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .registration-form {
   width: 30%;
-}
-
-.btn-menu {
-  display: flex;
-  justify-content: space-around;
 }
 
 .post {
@@ -185,6 +213,7 @@ strong {
 }
 
 /* a normal, unvisited link */
+.btn-light,
 a:link {
   /* color: gray; */
   /* color: #1b80b7; */
@@ -196,14 +225,14 @@ a:link {
 }
 /* a link the user has visited */
 a:visited {
-  color: darkcyan;
+  /* color: darkcyan; */
   text-decoration: none;
 }
 /* a link when the user mouses over it */
 a:hover {
-  color: #52bff2;
+  color: rgba(0, 0, 0, 0.84);
   /* color: white; */
-  text-decoration: none;
+  /* text-decoration: none; */
   /* font-weight: 200; */
 }
 /* a link the moment it is clicked */

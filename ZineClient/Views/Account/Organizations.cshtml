@@ -1,7 +1,11 @@
 @model ZineClient.Models.ApplicationUser
 
-<div class="jumbotron">
-  <h1>My organizations</h1>
+@{
+  ViewData["Title"] = "My Organizations";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
 </div>
 
 @if (Model.Organizations.Count == 0)
@@ -18,3 +22,9 @@ else
     }
   </ul>
 }
+
+  <div class="text-center">
+    <div class="btn-group">
+       <a class="btn btn-light" asp-controller="Organizations" asp-action="Create">New organization</a>
+    </div>
+  </div>

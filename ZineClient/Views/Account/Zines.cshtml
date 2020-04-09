@@ -1,7 +1,11 @@
 @model ZineClient.Models.ApplicationUser
 
-<div class="jumbotron">
-  <h1>My zines</h1>
+@{
+  ViewData["Title"] = "My Zines";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
 </div>
 
 @if (Model.Organizations.Count == 0)

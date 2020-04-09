@@ -1,7 +1,11 @@
 @model ZineClient.Models.ApplicationUser
 
-<div class="jumbotron">
-  <h1>My posts</h1>
+@{
+  ViewData["Title"] = "My Posts";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
 </div>
 
 @if (Model.Posts.Count == 0)
