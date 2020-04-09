@@ -42,6 +42,7 @@ namespace ZineClient.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
+      
       return View(currentUser);
     }
 

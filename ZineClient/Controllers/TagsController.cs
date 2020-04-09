@@ -12,11 +12,14 @@ using System;
 
 namespace ZineClient.Controllers
 {
+  [Authorize]
   public class TagsController : Controller
   {
     private readonly ZineClientContext _db;
-    public TagsController(ZineClientContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public TagsController(UserManager<ApplicationUser> userManager, ZineClientContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -26,28 +29,27 @@ namespace ZineClient.Controllers
       return View(model);
     }
 
-    // public ActionResult Create()
-    // {
-    //   ViewBag.ZineId = new SelectList(_db.Zines, "ZineId", "Name");
-    //   return View();
-    // }
+    public ActionResult Create()
+    {
+      // ViewBag.PostId = new SelectList(_db.Posts, "PostId", "Name");
+      return View();
+    }
 
-    // [HttpPost]
-    // public async Task<ActionResult> Create(Post post, int ZineId)
-    // {
-    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    //   var currentUser = await _userManager.FindByIdAsync(userId);
-    //   post.ApplicationUser = currentUser;
-    //   post.Published = DateTime.Now;
+    [HttpPost]
+    public ActionResult Create(Tag tag)
+    {
+      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // var currentUser = await _userManager.FindByIdAsync(userId);
+      // tag.ApplicationUser = currentUser;
 
-    //   _db.Posts.Add(post);
-    //   if (ZineId != 0)
-    //   {
-    //     _db.PostZine.Add(new PostZine() { ZineId = ZineId, PostId = post.PostId });
-    //   }
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Details", "Zines", new { id = ZineId });
-    // }
+      _db.Tags.Add(tag);
+      // if (PostId != 0)
+      // {
+      //   _db.PostTag.Add(new PostTag() { PostId = PostId, TagId = tag.TagId });
+      // }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
     public ActionResult Details(int id)
     {
       var thisTag = _db.Tags
@@ -58,41 +60,46 @@ namespace ZineClient.Controllers
       return View(thisTag);
     }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);
+    public ActionResult Edit(int id)
+    {
+      var thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
 
-    //   return View(thisOrganization);
-    // }
+      return View(thisTag);
+    }
 
-    // [HttpPost]
-    // public ActionResult Edit(Organization organization)
-    // {
-    //   _db.Entry(organization).State = EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
-    // public ActionResult CheckDelete(int id)
-    // {
-    //   var thisOrganization = _db.Organizations.FirstOrDefault(organization => organization.OrganizationId == id);
+    [HttpPost]
+    public ActionResult Edit(Tag tag)
+    {
+      _db.Entry(tag).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    public ActionResult Delete(int id)
+    {
+      var thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
 
-    //   return View("Delete", thisOrganization);
-    // }
+      return View(thisTag);
+    }
 
-    // public ActionResult Delete(int id)
-    // {
-    //   var thisPost = _db.Posts.FirstOrDefault(posts => posts.PostId == id);
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
+      _db.Tags.Remove(thisTag);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-    //   return View(thisPost);
-    // }
+    [HttpPost]
+    public ActionResult DeleteTag(int joinId)
+    {
+      var joinEntry = _db.PostTag.FirstOrDefault(entry => entry.PostTagId == joinId);
+      int thisPostId = joinEntry.PostId;
 
-    // [HttpPost, ActionName("Delete")]
-    // public ActionResult DeleteConfirmed(int id)
-    // {
-    //   var thisPost = _db.Posts.FirstOrDefault(posts => posts.PostId == id);
-    //   _db.Posts.Remove(thisPost);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+      _db.PostTag.Remove(joinEntry);
+      _db.SaveChanges();
+
+      return RedirectToAction("Details", "Posts", new { id = thisPostId });
+    }    
   }
 }

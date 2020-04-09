@@ -63,6 +63,10 @@
           <br>
           <a asp-controller="Posts" asp-action="Delete" asp-route-id="@join.Post.PostId">Delete post?</a>
         }
+        foreach (Posttag posttag in join)
+        {
+          @posttag.Post.Name;
+        }
       </div>
     }
   }

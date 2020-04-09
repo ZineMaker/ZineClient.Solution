@@ -1,0 +1,13 @@
+@model ZineClient.Models.Tag
+
+<div class="jumbotron">
+  <h1>Delete Tag</h1>
+</div>
+
+<h4>Are you sure you want to delete this tag?</h4>
+
+<div class="registration-form">
+  <form asp-controller="Tags" asp-action="Delete" method="post">
+    <input class="btn btn-light" type="submit" value="Delete">
+  </form>
+</div>

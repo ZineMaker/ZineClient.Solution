@@ -1,0 +1,45 @@
+@model ZineClient.Models.Tag
+
+@{
+    ViewData["Title"] = "@Model.Name";
+}
+
+  @if (@Model.Posts.Count == 0)
+  {
+    <p>This tag doesn't belong to any post yet</p>
+  }
+  else
+  {
+    <p></p>
+    foreach(var join in Model.Posts)
+    { 
+      <div class="post">
+        <h4><a asp-controller="Posts" asp-action="Details" asp-route-id="@join.Post.PostId">@join.Post.Title</a> </h4>
+        @join.Post.Published
+        @if (join.Post.Body != null)
+        {
+          <div id="body-@join.PostId" class="post-body">@join.Post.Body</div>
+          <script>
+            var bodyDiv = document.getElementById('body-@join.PostId');
+            bodyDiv.innerHTML = bodyDiv.innerText;
+          </script>
+        }
+        @if (@join.Post.MainImageUrl != null)
+        {
+        <img src="@join.Post.MainImageUrl" class="img-fluid img-thumbnail">
+        }
+        else
+        {
+        <img class="img-fluid" src="@ViewBag.Random">
+        }
+      </div>
+    }
+  }
+
+  @if (User.Identity.IsAuthenticated)
+  {
+  <div class="btn-menu">
+    <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.TagId">Edit tag</a>
+    <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.TagId">Delete tag</a>
+  </div>
+  }

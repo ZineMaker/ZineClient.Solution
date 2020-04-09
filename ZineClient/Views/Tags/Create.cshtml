@@ -1,0 +1,27 @@
+@model ZineClient.Models.Tag
+
+<div class="jumbotron">
+  <h1>Add Tag</h1>
+</div>
+
+<div class="registration-form">
+  <form asp-controller="Tags" asp-action="Create" method="post">
+
+    @* <input type="hidden" asp-for="@Model.OrganizationId" value="@ViewBag.OrganizationId"> *@
+
+    <div class="form-group">
+      <label for="Name">Name</label>
+      <input class="form-control" asp-for="Name">
+    </div>
+
+    <input class="btn btn-light" type="submit" value="Create">
+  </form>
+</div>
+
+
+
+
+
+
+
+
