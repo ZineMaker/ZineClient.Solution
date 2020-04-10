@@ -4,10 +4,13 @@
 <body style="background-color:rgb(30, 30, 30); color: white">
     <div class="text-center">
         <h1 class="display-4">Zine Maker</h1>
-        <h2 style="color: white">Connect with creative communities</h2>
+        <hr>
+        <h2 style="color: white; text-transform: uppercase; opacity: .85;">Connect with creative communities</h2>
+        <hr>
     </div>
 
-    @* <div class="zine-grid-display"> *@
+<br>
+<br>
     <div class="gridtest">
         @foreach (Zine zine in ViewBag.TopFour)
         {
@@ -21,4 +24,14 @@
             </div>
         }
     </div>
+
+@if (!User.Identity.IsAuthenticated)
+  {
+<div class="text-center" style="margin: 100px;">
+  <div class="btn-menu">
+    <a class="btn btn-dark btn-lg" style="color: white;" asp-controller="Account" asp-action="Register">Join</a>
+  </div>
+</div>
+  }
+
 </body>
