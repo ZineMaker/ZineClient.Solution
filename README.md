@@ -13,9 +13,9 @@
 - 1. [Description](#description)
 - 2. [Setup/Installation Requirements](#installation--set-up)
 - 3. [Specifications](#specs)
-  - [The Back End](<#The-Back-End:-(1)-MODELS-AND-SCHEMA-DATA>)
-    - 1. [MODELS AND SCHEMA DATA](<#The-Back-End:-(1)-MODELS-AND-SCHEMA-DATA>)
-  - [The Front End: THE VIEWABLE SITE](#The-Front-End:-THE-VIEWABLE-SITE)
+  - [The Back End](<#The-Back-End-(1)-MODELS-AND-SCHEMA-DATA>)
+    - 1. [MODELS AND SCHEMA DATA](<#The-Back-End-(1)-MODELS-AND-SCHEMA-DATA>)
+  - [The Front End: THE VIEWABLE SITE](#The-Front-End-THE-VIEWABLE-SITE)
     - 2. [IDENTITY AUTHENTICATION](<#(2)-IDENTITY-AUTHENTICATION>)
     - 3. [USER EXPERIENCE AND INTERFACE OVERVIEW](<#(3)-USER-EXPERIENCE-AND-INTERFACE-OVERVIEW>)
     - 4. [SITE STRUCTURE](<#(4)-SITE-STRUCTURE>)
@@ -28,8 +28,8 @@
 
 ---
 
-![zine-index-for-large-tablet](Screenshots\Zines-Index-LargeTablet.png)
-![zine-index-for-phone](Screenshots\Zines-Index-Phone.png)
+![zine-index-for-large-tablet](Screenshots/Zines-Index-LargeTablet.png)
+![zine-index-for-phone](Screenshots/Zines-Index-Phone.png)
 
 ## Description
 
@@ -37,7 +37,7 @@ Make some digital zines!
 
 In the time of pandemic and social isolation, it's more important than ever to stay safely connected to each other and to find healthy ways to express ourselves. Enter _Zine Maker_.
 
-![Account-Posts-Phone-Preview](Screenshots\Account-Posts-Phone-Preview.png)
+![Account-Posts-Phone-Preview](Screenshots/Account-Posts-Phone-Preview.png)
 
 Similar to a blog or a digital magazine, use Zine Maker to create content-rich posts and organize them into readable publications. Sign up for an account, join community organizations or create your own, and then get started by submitting your posts to e-zines that you or your organization maintains.
 
@@ -49,9 +49,9 @@ Similar to a blog or a digital magazine, use Zine Maker to create content-rich p
 <details>
   <summary>Photos of Responsive Zine</summary>
 
-![Zine-Details-for-Desktop](Screenshots\Zine-Details-Desktop.png)
-![Zine-Details-for-Tablet](Screenshots\Zine-Details-Tablet.png)
-![Zine-Details-for-Phone](Screenshots\Zine-Details-Phone.png)
+![Zine-Details-for-Desktop](Screenshots/Zine-Details-Desktop.png)
+![Zine-Details-for-Tablet](Screenshots/Zine-Details-Tablet.png)
+![Zine-Details-for-Phone](Screenshots/Zine-Details-Phone.png)
 
 </details>
 
@@ -117,9 +117,9 @@ Here are the features of the site that we aimed to include, with intended functi
 - Logged-in users will have access to buttons for adding, editing, and deleting content, including Organizations, Zines, Posts, and Tags.
 
 Register Screen
-![Sign-Up](Screenshots\Account-Register-Desktop.png)
+![Sign-Up](Screenshots/Account-Register-Desktop.png)
 Log In Screen
-![Login](Screenshots\Account-Login-Desktop.png)
+![Login](Screenshots/Account-Login-Desktop.png)
 
 </details>
 
@@ -133,7 +133,7 @@ Log In Screen
 - Each page should be visually appealing and organized without being cluttered. Each different action will have its own view.
 - Each page should reflect a standardized design that implements reuable Bootstrap and customized CSS classes to create a cohesive, modern aesthetic.
 
-![organization-details-for-tablet](Screenshots\Organization-Details-Tablet.png)
+![organization-details-for-tablet](Screenshots/Organization-Details-Tablet.png)
 
 </details>
 
@@ -143,23 +143,23 @@ Log In Screen
   <summary>Expand for details</summary>
 
 - **Home Page:** A user should be able to navigate to a splash page with links to rest of site.
-- **Navigation Bar** contains links to the home page, the public indices, and the account section dropdown. If not logged in, the account section shows options to log in or register. Otherwise, it shows the account index, private orgs and posts, and the log out button. ![mobile-stacked-menu-is-open](Screenshots\Posts-Detail-Phone-OpenMenu.png)
+- **Navigation Bar** contains links to the home page, the public indices, and the account section dropdown. If not logged in, the account section shows options to log in or register. Otherwise, it shows the account index, private orgs and posts, and the log out button. ![mobile-stacked-menu-is-open](Screenshots/Posts-Detail-Phone-OpenMenu.png)
 - **Indices**:
   - _Organizations_ shows all organizations (with name, logo image, and description) in a list
-  - _My organizations_ shows all of the logged-in user's organizations (with name, logo image, and description) in a list ![Account-organizations-on-phone](Screenshots\Account-Organizations-Phone.png)
-  - _Zines_ shows all publications (with name and cover image) in an image gallery ![zine-index-for-tablet](Screenshots\Zines-Index-Tablet.png)
-  - _Posts_ shows all posts (with title, main image, and content preview) in a list ![posts-index-for-desktop](Screenshots\Posts-Index-Desktop.png)
-  - _My posts_ shows all of the logged-in user's posts (with title, main image, and content preview) in a list ![Account-Posts-Phone](Screenshots\Account-Posts-Phone.png)
-  - _Tags_ shows all of the tags that have been added to the site listed in a text block ![tags-index-for-phone](Screenshots\Tags-Index-Phone.png)
+  - _My organizations_ shows all of the logged-in user's organizations (with name, logo image, and description) in a list ![Account-organizations-on-phone](Screenshots/Account-Organizations-Phone.png)
+  - _Zines_ shows all publications (with name and cover image) in an image gallery ![zine-index-for-tablet](Screenshots/Zines-Index-Tablet.png)
+  - _Posts_ shows all posts (with title, main image, and content preview) in a list ![posts-index-for-desktop](Screenshots/Posts-Index-Desktop.png)
+  - _My posts_ shows all of the logged-in user's posts (with title, main image, and content preview) in a list ![Account-Posts-Phone](Screenshots/Account-Posts-Phone.png)
+  - _Tags_ shows all of the tags that have been added to the site listed in a text block ![tags-index-for-phone](Screenshots/Tags-Index-Phone.png)
   - _Account_ shows the basic account information
 - **Details Pages**
   - Users should be able to click on an individual zine to read it, which all of the zines' content and full posts on the page.
   - Users should be able to click an individual post's title to view it, including all content, all zines where it was published, and all tags.
-  - Organizations have unique pages which display a gallery of Zine covers and a list of members ![Organization-Details-Tablet](Screenshots\Organization-Details-Tablet-2.png)
-  - Tag detail pages aggregate all posts that share a tag ![view-tagged-posts-Covid-19](Screenshots\Tag-Details-Tablet.png)
+  - Organizations have unique pages which display a gallery of Zine covers and a list of members ![Organization-Details-Tablet](Screenshots/Organization-Details-Tablet-2.png)
+  - Tag detail pages aggregate all posts that share a tag ![view-tagged-posts-Covid-19](Screenshots/Tag-Details-Tablet.png)
 - **Create, Edit, and Delete Pages**
 
-  - Using forms, the user can create new accounts, organizations, posts, zines, and tags ![create-post-on-desktop](Screenshots\Posts-Create-Desktop.png) ![create-posts-on-phone](Screenshots\Posts-Create-Phone.png)
+  - Using forms, the user can create new accounts, organizations, posts, zines, and tags ![create-post-on-desktop](Screenshots/Posts-Create-Desktop.png) ![create-posts-on-phone](Screenshots/Posts-Create-Phone.png)
   - Using forms, the user can edit or delete organizations, zines, and posts
   - Using Quill.Js, the user can write, edit, and read posts with Rich-Text formatting retained.
   - Users can "join" (be added to list of members of) an organization
