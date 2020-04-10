@@ -24,9 +24,12 @@ namespace ZineClient.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View();
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+
+      return View(currentUser);
     }
     public async Task<ActionResult> Organizations()
     {
@@ -42,6 +45,7 @@ namespace ZineClient.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
+
       return View(currentUser);
     }
 

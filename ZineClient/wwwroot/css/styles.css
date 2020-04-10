@@ -1,15 +1,88 @@
 img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
+  /* -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); */
+  max-width: 400px;
+}
+body {
+  color: rgba(0, 0, 0, 0.84);
+  font-family: "Lato", sans-serif;
+  height: 100%;
+  /* background-color: #f6f5f8; */
+}
+.container-body {
+  padding-right: 84px;
+  padding-left: 84px;
+}
+@media (max-width: 600px) {
+  .container-body {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+}
+h1 {
+  font-family: "Source Serif Pro", serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+h2 {
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 400;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+h3 {
+  font-family: "Source Serif Pro", serif;
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 400;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+h4 {
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 24px;
+  font-size: 21px;
+  letter-spacing: -0.32px;
+  font-weight: 600;
+}
+p,
+.post-body {
+  font-family: "Source Serif Pro", serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.58;
+  letter-spacing: -0.004em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.post-preview,
+.post-preview p {
+  font-family: "Source Serif Pro", serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.58;
+  letter-spacing: -0.004em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+strong {
+  font-weight: 700;
+}
+.btn-light,
+a:-webkit-any-link {
+  color: rgba(0, 0, 0, 0.54);
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .registration-form {
   width: 30%;
-}
-
-.btn-menu {
-  display: flex;
-  justify-content: space-around;
 }
 
 .post {
@@ -59,7 +132,7 @@ img {
   /* height: auto; */
   transition: 0.5s ease;
   /* backface-visibility: hidden; */
-  background-color: black;
+  background-color: white;
   object-fit: cover;
 }
 
@@ -79,15 +152,7 @@ img {
   color: black;
   font-size: 16px;
   padding: 16px 32px;
-}
-
-.zine-details-link a {
-  text-decoration: none;
-  color: #fff;
-}
-
-.zine-details-link a:hover {
-  color: rgb(131, 46, 46);
+  line-height: 1;
 }
 
 .zine-thumbnail:hover .zine-cover {
@@ -99,7 +164,7 @@ img {
 }
 
 .gridtest {
-  line-height: 0;
+  line-height: 1.5;
 
   -webkit-column-count: 4;
   -webkit-column-gap: 0px;
@@ -150,31 +215,90 @@ img {
   }
 }
 
-/* a normal, unvisited link */
+.post-index-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  overflow: hidden;
+}
+
+.index-preview {
+  height: 240px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.index-preview2 {
+  height: 240px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 200px;
+  float: left;
+  margin-right: 20px;
+  /* margin-bottom: 1px; */
+}
+
+.btn-light,
 a:link {
-  color: #1b80b7;
-  /* color: white; */
   transition: all 0.2s linear;
-  /* color: gray; */
+
   text-decoration: none;
 }
-/* a link the user has visited */
 a:visited {
-  color: darkcyan;
   text-decoration: none;
 }
-/* a link when the user mouses over it */
 a:hover {
-  color: #52bff2;
-  /* color: white; */
-  text-decoration: none;
-  /* font-weight: 200; */
+  color: rgba(0, 0, 0, 0.84);
 }
-/* a link the moment it is clicked */
 a:active {
   text-decoration: none;
 }
 
 img:before {
-  content: "We're sorry, the image below is broken :(";
+  content: "We're sorry, this image can't be retrieved";
+}
+.content {
+  margin-bottom: 50px;
+}
+
+/* The hero image */
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-color: blueviolet;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://cms-assets.tutsplus.com/uploads/users/114/posts/32493/image/Mockup1.jpg");
+  /* Set a specific height */
+  height: 300px;
+  width: 100%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  top: 600;
+  left: 0;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0.9;
+  overflow: hidden;
+}
+.hero-text p {
+  margin-top: -0.5em;
+}
+@media (max-width: 960px) {
+  .hero-text p {
+    font-size: 16px;
+  }
 }

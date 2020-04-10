@@ -1,13 +1,19 @@
 @model ZineClient.Models.Organization
 
+@{
+  ViewData["Title"] = "Delete " + @Model.Name;
+}
 
-<h1>Delete Organization</h1>
+  <div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+  </div>
 
 <h4>Are you sure you want to delete this organization?</h4>
 
-<div class="registration-form">
+<div class="text-center">
+  <div class="btn-group">
   <form asp-controller="Organizations" asp-action="Delete" method="post">
-    @* <input type="hidden" value="@Model.OrganizationId" asp-for="OrganizationId"> *@
     <input class="btn btn-light" type="submit" value="Delete">
   </form>
+</div>
 </div>

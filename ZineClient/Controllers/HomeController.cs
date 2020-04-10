@@ -18,7 +18,7 @@ namespace ZineClient.Controllers
     }
     public IActionResult Index()
     {
-      ViewBag.TopFour = _db.Zines.OrderBy(z => z.PublicationDate).Take(4).ToList();
+      ViewBag.TopFour = _db.Zines.OrderBy(z => z.PublicationDate).Take(12).ToList();
       return View();
     }
 

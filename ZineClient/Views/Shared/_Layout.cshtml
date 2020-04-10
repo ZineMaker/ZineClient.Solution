@@ -15,6 +15,7 @@
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
     </environment>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/styles.css" />
 </head>
@@ -22,16 +23,16 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 justify-content-between">
             <div class="container" >
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZineClient</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Zine Maker</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                        </li> *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Organizations" asp-action="Index">Organizations</a>
                         </li>
@@ -42,10 +43,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Test">Test</a>
-                        </li>
-                    @* </ul>
-                    <ul>                         *@
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Tags" asp-action="Index">Tags</a>
+                        </li>                        
+                    @* </ul> *@
+                    @* <ul>                         *@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item dropdown mr-auto">
@@ -56,7 +57,7 @@
                                     <a class="dropdown-item" asp-controller="Account" asp-action="Index">My account</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" asp-controller="Account" asp-action="Posts">My posts</a>
-                                    <a class="dropdown-item" asp-controller="Account" asp-action="Zines">My zines</a>
+                                    @* <a class="dropdown-item" asp-controller="Account" asp-action="Zines">My zines</a> *@
                                     <a class="dropdown-item" asp-controller="Account" asp-action="Organizations">My organizations</a>
                                     <div class="dropdown-divider"></div>
                                     <form method="post">
@@ -81,7 +82,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container container-body">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
@@ -90,7 +91,9 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - ZineClient - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 Andriy Veremyeyev & Krista Rutz - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <br>
+            <a></a>
         </div>
     </footer>
 

@@ -24,16 +24,17 @@ namespace ZineClient.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
-      List<Post> model = _db.Posts.ToList();
+      List<Post> model = _db.Posts.OrderBy(p => p.Published).ToList();
       return View(model);
     }
 
-    public ActionResult Test()
-    {
-      return View();
-    }
+    // public ActionResult Test()
+    // {
+    //   return View();
+    // }
 
     public ActionResult Create()
     {
@@ -64,6 +65,8 @@ namespace ZineClient.Controllers
       var thisPost = _db.Posts
       .Include(o => o.Zines)
       .ThenInclude(join => join.Zine)
+      .Include(o => o.Tags)
+      .ThenInclude(join => join.Tag)
       .FirstOrDefault(o => o.PostId == id);
 
       return View(thisPost);
@@ -81,7 +84,7 @@ namespace ZineClient.Controllers
     {
       _db.Entry(post).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index", "Account");
+      return RedirectToAction("Details", "Posts", new { id = post.PostId });
     }
     // public ActionResult CheckDelete(int id)
     // {
@@ -149,6 +152,34 @@ namespace ZineClient.Controllers
 
       return RedirectToAction("Details", "Posts", new { id = thisPostId });
       // return RedirectToAction("Index");
+    }
+
+    public ActionResult AddTag(int id)
+    {
+      var thisPost = _db.Posts.FirstOrDefault(posts => posts.PostId == id);
+      List<Tag> selectedTags = _db.Tags.OrderBy(x => x.Name).ToList();
+      var postTags = _db.PostTag.Where(x => x.PostId == id).ToList();
+
+      foreach (PostTag join in postTags)
+      {
+        Tag thisTag = _db.Tags.Find(join.TagId);
+        selectedTags.Remove(thisTag);
+      }
+
+      ViewBag.TagId = new SelectList(selectedTags, "TagId", "Name");
+
+      return View(thisPost);
+    }
+
+    [HttpPost]
+    public ActionResult AddTag(Post post, int TagId)
+    {
+      if (TagId != 0)
+      {
+        _db.PostTag.Add(new PostTag() { TagId = TagId, PostId = post.PostId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", "Posts", new { id = post.PostId });
     }
   }
 }

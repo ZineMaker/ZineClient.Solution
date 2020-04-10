@@ -1,6 +1,15 @@
 @model ZineClient.Models.Post
 
-<h2> Add post @Html.DisplayFor(model => model.Title) to one more zine</h2>
+@{
+  ViewData["Title"] = "Submit Post to a Zine";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2> Contribute your post @Html.DisplayFor(model => model.Title) to a zine</h2>
+</div>
+
+
 @* @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.PostId)

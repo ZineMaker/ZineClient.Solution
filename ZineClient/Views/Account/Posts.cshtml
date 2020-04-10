@@ -1,7 +1,11 @@
 @model ZineClient.Models.ApplicationUser
 
-<div class="jumbotron">
-  <h1>My posts</h1>
+@{
+  ViewData["Title"] = "My Posts";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
 </div>
 
 @if (Model.Posts.Count == 0)
@@ -12,14 +16,50 @@ else
 {
   @foreach (var post in Model.Posts)
   {
-    <h4 asp-controller="Posts" asp-action="Details" asp-route-id="@post.PostId">@post.Title</h4>
-    <p>@post.Published</p>
-    <div id="post-body" class="post-body">@post.Body</div>
-    <img class="img-fluid" src="@post.Source">
+    <hr>
+    <div class="index-preview2">
+      <div>
+        <div class="preview-image">
+          @if (@post.MainImageUrl != null)
+          {
+          <img style="width:200px" src="@post.MainImageUrl">
+          }
+          else
+          {
+          <img style="width:200px" src="https://thednetworks.com/wp-content/uploads/2012/01/picture_not_available_400-300.png">
+          }
+        </div>
+        <h2>@post.Title</h2>
+      @if (post.Body != null)
+      {
+        <div id="body-@post.PostId" class="post-preview">@post.Body</div>
+        <script>
+          var bodyDiv = document.getElementById('body-@post.PostId');
+          bodyDiv.innerHTML = bodyDiv.innerText;
+        </script>
+      }
+      </div>
+    </div>
   }
 }
 
-<script>
-  var bodyDiv = document.getElementById('post-body');
-  bodyDiv.innerHTML = bodyDiv.innerText;
-</script>
+    @* <h4>@Html.ActionLink($"{post.Title}", "Details", "Posts", new { id = post.PostId })</h4>
+    <p>@post.Published</p>
+    @if (post.Body != null)
+        {
+          <div id="body-@post.PostId" class="post-body">@post.Body</div>
+          <script>
+            var bodyDiv = document.getElementById('body-@post.PostId');
+            console.log(bodyDiv);
+            bodyDiv.innerHTML = bodyDiv.innerText;
+          </script>
+        }
+    <img class="img-fluid" src="@post.MainImageUrl">
+  } *@
+
+
+<div class="text-center">
+  <div class="btn-group">
+      <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Add post</a>
+  </div>
+</div>

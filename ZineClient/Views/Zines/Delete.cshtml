@@ -1,7 +1,12 @@
 @model ZineClient.Models.Zine
 
+@{
+  ViewData["Title"] = "Delete " + @Model.Name;
+}
 
-<h1>Delete Zine</h1>
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+</div>
 
 <h4>Are you sure you want to delete this zine?</h4>
 

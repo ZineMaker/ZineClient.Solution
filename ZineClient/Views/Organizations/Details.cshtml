@@ -1,44 +1,60 @@
 @using System
 @using Microsoft.AspNetCore.Identity
-
+@model ZineClient.Models.Organization
 @{
-    ViewData["Title"] = "@Model.Name";
+    ViewData["Title"] = @Model.Name;
 }
 
-@model ZineClient.Models.Organization
 
-<div class="jumbotron">
-  <h1>@Html.DisplayFor(model => model.Name)</h1>
-  <br>
-  <p> @Html.DisplayFor(model => model.Description)</p>
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2>@Model.Description</h2>
 </div>
 
-
+<br>
 @if (@Model.Zines.Count == 0)
 {
-  <p>This organization doesn't have zines yet</p>
+  <h3 class="text-dark">This organization doesn't have zines yet</h3>
 }
 else
 {
-  foreach(Zine zine in Model.Zines)
-  {
-    <h4><a asp-controller="Zines" asp-action="Details" asp-route-id="@zine.ZineId">@zine.Name</a></h4>
-    <img class="img-fluid" src="@zine.MainImageUrl">
-      @if (User.Identity.IsAuthenticated)
-      { 
-        <p><a asp-controller="Zines" asp-action="Delete" asp-route-id="@zine.ZineId">Delete zine?</a></p>
-      }
-  }
+  <h3 class="text-dark">Zines</h3>
+  <div class="gridtest">
+    @foreach(Zine zine in Model.Zines)
+    {
+      
+      <div class="zine-thumbnail">
+        @if (@zine.MainImageUrl != null)
+        {
+          <img class="zine-cover" src="@zine.MainImageUrl">
+        }
+        else
+        {
+          <img class="zine-cover" src="https://www.rcsdk8.org/sites/main/files/main-images/camera_lense_0.jpeg">
+        }
+        <div class="overlay">
+          <div class="zine-details-link">
+            <h4><a asp-controller="Zines" asp-action="Details" asp-route-id="@zine.ZineId">@zine.Name</a></h4>
+            @if (User.Identity.IsAuthenticated)
+            { 
+              <p><a asp-controller="Zines" asp-action="Delete" asp-route-id="@zine.ZineId">Delete zine?</a></p>
+            }
+          </div>
+        </div>  
+      </div>
+    }
+  </div>  
 }
 
+<hr>
 
 @if (@Model.ApplicationUsers.Count == 0)
 {
-  <p>This organization doesn't have users yet</p>
+  <h3 class="text-dark">This organization doesn't have members yet</h3>
 }
 else
 { 
-  <p>Members:</p>
+  <h3 class="text-dark">Members</h3>
   foreach(var join in Model.ApplicationUsers)
   {
     <p>@join.ApplicationUser.FirstName @join.ApplicationUser.LastName</p>
@@ -48,11 +64,14 @@ else
 
 @if (User.Identity.IsAuthenticated)
 {
-  <div class="btn-menu">
-    <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
-    <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.OrganizationId">Delete organization</a>
-    <a class="btn btn-light" asp-controller="Zines" asp-action="Create" asp-route-id="@Model.OrganizationId">Add zine</a>
-    <a class="btn btn-light" asp-controller="Organizations" asp-action="AddUser" asp-route-id="@Model.OrganizationId" >Join organization</a>
+  <br>
+  <div class="text-center">
+    <div class="btn-group">
+      <a class="btn btn-light" asp-action="Edit" asp-route-id="@Model.OrganizationId">Edit organization</a>
+      <a class="btn btn-light" asp-action="Delete" asp-route-id="@Model.OrganizationId">Delete organization</a>
+      <a class="btn btn-light" asp-controller="Zines" asp-action="Create" asp-route-id="@Model.OrganizationId">Add zine</a>
+      <a class="btn btn-light" asp-controller="Organizations" asp-action="AddUser" asp-route-id="@Model.OrganizationId" >Join organization</a>
+    </div>
   </div>
 }
 

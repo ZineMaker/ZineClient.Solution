@@ -1,0 +1,26 @@
+@model ZineClient.Models.Post
+
+@{
+  ViewData["Title"] = "Add a Tag";
+}
+
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2>Power your creation with metadata</h2>
+</div>
+
+<div class="registration-form">
+  <form asp-controller="Posts" asp-action="AddTag" method="post">
+
+    <input type="hidden" value="@Model.PostId"  asp-for="PostId">
+    @Html.Label("Select tag")
+    @Html.DropDownList("TagId")
+
+  <input class="btn btn-light" type="submit" value="Add Tag">
+</form>
+</div>
+<div class="text-center">
+  <div class="btn-group">
+    <a class="btn btn-light" asp-controller="Tags" asp-action="Create">Create new tag</a>
+  </div>
+</div>

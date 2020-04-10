@@ -1,15 +1,75 @@
-page not needed?
-
-
 @model List<ZineClient.Models.Post>;
 
-<h1>Posts</h1>
+@{
+  ViewData["Title"] = "Recent Posts";
+}
 
-<ul>
+<div class="text-center">
+  <h1>@ViewData["Title"]</h1>
+  <h2>Explore contributions</h2>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+  <div class="text-center">
+    <div class="btn-group">
+        <a class="btn btn-light" asp-controller="Posts" asp-action="Create">Write a post</a>
+    </div>
+  </div>
+}
+
   @foreach(Post post in Model)
-  {
-      <li>@Html.ActionLink($"{post.Title}", "Details", new { id = post.PostId })</li>
+  { 
+  <hr>
+  <div class="index-preview">
+    <div>
+      <div class="preview-image">
+        @if (@post.MainImageUrl != null)
+        {
+        <img style="width:200px" src="@post.MainImageUrl">
+        }
+        else
+        {
+        <img style="width:200px" src="https://thednetworks.com/wp-content/uploads/2012/01/picture_not_available_400-300.png">
+        }
+      </div>
+      <h2>@Html.ActionLink($"{post.Title}", "Details", new { id = post.PostId })</h2>
+    @if (post.Body != null)
+    {
+      <div id="body-@post.PostId" class="post-preview">@post.Body</div>
+      <script>
+        var bodyDiv = document.getElementById('body-@post.PostId');
+        bodyDiv.innerHTML = bodyDiv.innerText;
+      </script>
+    }
+    </div>
+  </div>
   }
-</ul>
 
-<p>@Html.ActionLink("Add new post", "Create")</p>
+
+
+
+
+       @* <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Expand
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body" style="color: black">
+                @if (post.Body != null)
+                {
+                  <div id="body-@post.PostId" class="post-body">@post.Body</div>
+                  <script>
+                    var bodyDiv = document.getElementById('body-@post.PostId');
+                    bodyDiv.innerHTML = bodyDiv.innerText;
+                  </script>
+                }
+              </div>
+            </div>
+          </div>
+        </div> *@
