@@ -13,8 +13,8 @@
 - 1. [Description](#description)
 - 2. [Setup/Installation Requirements](#installation--set-up)
 - 3. [Specifications](#specs)
-  - [The Back End: ](<#The-Back-End:-(1)-MODELS-AND-SCHEMA-DATA>)
-    - 1. [MODELS AND SCHEMA DATA](<#The-Back-End:-(1)-MODELS-AND-SCHEMA-DATA>)
+  - [The Back End](#The-Back-End:-(1)-MODELS-AND-SCHEMA-DATA)
+    - 1. [MODELS AND SCHEMA DATA](#The-Back-End:-(1)-MODELS-AND-SCHEMA-DATA)
   - [The Front End: THE VIEWABLE SITE](#The-Front-End:-THE-VIEWABLE-SITE)
     - 2. [IDENTITY AUTHENTICATION](<#(2)-IDENTITY-AUTHENTICATION>)
     - 3. [USER EXPERIENCE AND INTERFACE OVERVIEW](<#(3)-USER-EXPERIENCE-AND-INTERFACE-OVERVIEW>)
@@ -165,6 +165,8 @@ Log In Screen
   - Users can "join" (be added to list of members of) an organization
   - Posts can be added to or removed from zines
   - Tags can be added to or removed from posts
+
+</details>
 
 ## Technologies Used
 
